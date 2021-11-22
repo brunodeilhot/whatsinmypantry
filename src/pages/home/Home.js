@@ -1,6 +1,5 @@
 import {
     Avatar,
-    Button,
     List,
     ListItem,
     ListItemAvatar,
@@ -10,7 +9,6 @@ import {
     Typography,
   } from "@mui/material";
   import { useEffect, useState } from "react";
-  import { Link } from "react-router-dom";
   import api from "../../services/api";
   
   const Home = () => {
@@ -58,9 +56,6 @@ import {
               : null
           }
           </List>
-        <Link to="recipelist">
-          <Button variant="contained">Recipe List</Button>
-        </Link>
       </>
     );
   };
