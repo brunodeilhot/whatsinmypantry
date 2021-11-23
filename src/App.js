@@ -15,7 +15,7 @@ const theme = createTheme({
       main: '#7FD7C3'
     },
     secondary: {
-      main: '#E5E5E5',
+      main: '#FFFFFF',
     },
     text: {
       primary: '#383A47',
@@ -25,6 +25,7 @@ const theme = createTheme({
       default: '#FAFAFA',
       paper: '#FAFAFA'
     },
+    divider: 'rgba(255, 255, 255, 0.3)'
   },
 });
 

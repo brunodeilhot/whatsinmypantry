@@ -1,23 +1,21 @@
-import { MenuRounded } from "@mui/icons-material";
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import MainNavMobile from "./MainNav/MainNavMobile";
 
 const Header = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box component="header" sx={{ flexGrow: 1 }}>
       <AppBar color="inherit" sx={{ boxShadow: 0 }}>
         <Toolbar>
           <Typography
             variant="h1"
-            component="div"
+            component="h1"
             color="primary"
             sx={{ fontSize: "h6.fontSize", fontWeight: "bold", flexGrow: 1 }}
           >
             #whatsinmypantry
           </Typography>
-          <IconButton edge="end" color="primary" disableRipple={true} aria-label="menu">
-            <MenuRounded sx={{ fontSize: 50 }} />
-          </IconButton>
+          <MainNavMobile />
         </Toolbar>
       </AppBar>
       <Toolbar />
