@@ -6,7 +6,20 @@ const theme = createTheme({
       button: {
           textTransform: 'none'
       }
-  }
+  },
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#7FD7C3'
+    },
+    text: {
+      primary: '#383A47',
+      secondary: '#ffffff',
+    },
+    background: {
+      default: '#FAFAFA',
+    },
+  },
 });
 
 const responsiveTheme = responsiveFontSizes(theme);
