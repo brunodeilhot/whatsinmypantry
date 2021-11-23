@@ -11,7 +11,7 @@ import {
   } from "@mui/material";
   import { useEffect, useState } from "react";
   import { Link } from "react-router-dom";
-  import api from "../../api/ingredientApi";
+  import api from "../../services/api";
   
   const Home = () => {
   
