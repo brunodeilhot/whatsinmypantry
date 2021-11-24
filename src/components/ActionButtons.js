@@ -29,6 +29,7 @@ const ActionButtons = () => {
         >
           {ActionBtList.map((item) => (
             <BottomNavigationAction
+              key={item.name}
               label={item.name.toUpperCase()}
               icon={item.icon}
               sx={{
