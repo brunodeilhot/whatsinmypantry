@@ -3,7 +3,7 @@ import { Drawer, IconButton } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import MainNavList from "../MainNavList";
-import About from "./about";
+import About from "./About";
 
 const MainNavMobile = () => {
   const [navState, setNavState] = useState(false);
