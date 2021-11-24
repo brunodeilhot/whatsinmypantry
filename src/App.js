@@ -1,4 +1,5 @@
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material';
+import { Box } from '@mui/system';
 import { Outlet } from 'react-router';
 import ActionButtons from './components/ActionButtons';
 import Header from './components/Header';
@@ -11,7 +12,6 @@ const theme = createTheme({
       }
   },
   palette: {
-    type: 'light',
     primary: {
       main: '#7FD7C3'
     },
@@ -23,8 +23,8 @@ const theme = createTheme({
       secondary: '#E5E5E5'
     },
     background: {
-      default: '#FAFAFA',
-      paper: '#FAFAFA'
+      paper: '#FAFAFA',
+      default: '#FAFAFA'
     },
     divider: 'rgba(255, 255, 255, 0.3)'
   },
@@ -35,9 +35,11 @@ const responsiveTheme = responsiveFontSizes(theme);
 function App() {
   return (
     <ThemeProvider theme={responsiveTheme}>
+      <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default'}}>
       <Header />
       <Outlet />
       <ActionButtons />
+      </Box>
     </ThemeProvider>
   );
 }
