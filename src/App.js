@@ -28,6 +28,24 @@ const theme = createTheme({
     },
     divider: 'rgba(255, 255, 255, 0.3)'
   },
+  components: {
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
+        disableTouchRipple: true,
+        focusRipple: true
+      }
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: "transparent"
+          }
+        }
+      }
+    }
+  }
 });
 
 const responsiveTheme = responsiveFontSizes(theme);

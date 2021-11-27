@@ -1,28 +1,51 @@
 import { SearchRounded } from "@mui/icons-material";
 import { InputAdornment, TextField } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, styled } from "@mui/system";
 
-const SearchBar = ({ handleChange }) => {
+const SearchBar = ({ handleChange, value }) => {
+
+  const SearchIgredientsInput = styled(TextField)({
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#7FD7C3",
+        borderWidth: "2px",
+        borderRadius: "30px",
+      },
+      "&:hover fieldset": {
+        borderColor: "#7FD7C3",
+      },
+      "&.Mui-focused fieldset": {
+        borderWidth: "3px",
+      },
+    },
+  });
+
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
       }}
     >
-      <TextField
+      <SearchIgredientsInput
+        autoFocus
+        defaultValue={value}
         onChange={handleChange}
         id="ingredient-search"
         placeholder="e.g. tomato"
-        autoFocus
-        InputProps={{ startAdornment: <InputAdornment position="start"><SearchRounded color="primary" sx={{ fontSize: 40 }} /></InputAdornment>}}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchRounded color="primary" sx={{ fontSize: 40 }} />
+            </InputAdornment>
+          ),
+        }}
         sx={{
           minWidth: "80%",
-          borderRadius: '30px',
-          backgroundColor: "secondary.main",
-          '& .MuiOutlinedInput-root': { borderRadius: '30px', '& fieldset': { borderColor: 'primary.main', borderWidth: '2px'}, '& input:focus + fieldset': { borderWidth: '3px' }}
+          borderRadius: "30px",
+          backgroundColor: "secondary.main"
         }}
-      ></TextField>
+      />
     </Box>
   );
 };

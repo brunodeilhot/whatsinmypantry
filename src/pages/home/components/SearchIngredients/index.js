@@ -2,14 +2,21 @@ import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import { useEffect, useState } from "react";
 import debounce from "@mui/utils/debounce";
+import { useDispatch } from "react-redux";
 
 const SearchIngredients = () => {
+
+  const dispatch = useDispatch();
 
   const [value, setValue] = useState('');
   const [ingredients, setIngredient] = useState();
 
   function handleChange(e) {
     return setValue(e.target.value);
+  }
+
+  function addIngredient(e, ingredient) {
+      dispatch({ type: 'ADD_INGREDIENT', payload: ingredient.toLowerCase() });
   }
 
   useEffect(() => {
@@ -34,9 +41,9 @@ const SearchIngredients = () => {
 
   return (
     <>
-    <SearchBar handleChange={debounce(handleChange, 300)} />
+    <SearchBar value={value} handleChange={debounce(handleChange, 300)} />
     {ingredients !== undefined
-    ? <SearchResults ingredients={ingredients} />
+    ? <SearchResults ingredients={ingredients} addIngredient={addIngredient} />
     : null}
     </>
   );
