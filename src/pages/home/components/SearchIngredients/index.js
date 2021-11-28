@@ -2,13 +2,15 @@ import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import { useEffect, useState } from "react";
 import debounce from "@mui/utils/debounce";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+// import api from "../../../../services/api";
 
 const SearchIngredients = () => {
-
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState('');
+  const pantry = useSelector((state) => state.myPantry);
+
+  const [value, setValue] = useState("");
   const [ingredients, setIngredient] = useState();
 
   function handleChange(e) {
@@ -16,7 +18,14 @@ const SearchIngredients = () => {
   }
 
   function addIngredient(e, ingredient) {
-      dispatch({ type: 'ADD_INGREDIENT', payload: ingredient.toLowerCase() });
+    if (pantry.indexOf(ingredient) !== -1) {
+      return dispatch({ type: "REMOVE_INGREDIENT", payload: ingredient });
+    }
+    dispatch({ type: "ADD_INGREDIENT", payload: ingredient });
+  }
+
+  function resetValue() {
+    return setValue("");
   }
 
   useEffect(() => {
@@ -27,24 +36,28 @@ const SearchIngredients = () => {
     // }
 
     const testIngredients = [
-      { id: 1, name: 'Tomato', image: '' },
-      { id: 2, name: 'Banana', image: ''},
-      { id: 3, name: 'Lettuce', image: '' },
-      { id: 4, name: 'Broccoli', image: '' }
-    ]
+      { id: 1, name: "tomato", image: "" },
+      { id: 2, name: "banana", image: "" },
+      { id: 3, name: "lettuce", image: "" },
+      { id: 4, name: "broccoli", image: "" },
+    ];
     if (value.length >= 3) {
-       return setIngredient(testIngredients)
+      return setIngredient(testIngredients);
     }
-    setIngredient(undefined)
-    
+    setIngredient(undefined);
   }, [value]);
 
   return (
     <>
-    <SearchBar value={value} handleChange={debounce(handleChange, 300)} />
-    {ingredients !== undefined
-    ? <SearchResults ingredients={ingredients} addIngredient={addIngredient} />
-    : null}
+      <SearchBar value={value} handleChange={debounce(handleChange, 300)} />
+      {ingredients !== undefined ? (
+        <SearchResults
+          ingredients={ingredients}
+          addIngredient={addIngredient}
+          resetValue={resetValue}
+          pantry={pantry}
+        />
+      ) : null}
     </>
   );
 };
