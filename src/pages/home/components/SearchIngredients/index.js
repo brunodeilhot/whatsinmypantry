@@ -40,6 +40,10 @@ const SearchIngredients = () => {
       { id: 2, name: "banana", image: "" },
       { id: 3, name: "lettuce", image: "" },
       { id: 4, name: "broccoli", image: "" },
+      { id: 5, name: "apple", image: "" },
+      { id: 6, name: "apple sauce", image: "" },
+      { id: 7, name: "tomato sauce", image: "" },
+      { id: 8, name: "kiwi", image: "" },
     ];
     if (value.length >= 3) {
       return setIngredient(testIngredients);

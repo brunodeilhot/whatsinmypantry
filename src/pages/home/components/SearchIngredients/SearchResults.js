@@ -12,9 +12,9 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { imageBaseURL } from "../../../../services/api";
 
 const SearchResults = ({ ingredients, addIngredient, resetValue, pantry }) => {
-  const imageBaseURL = "https://spoonacular.com/cdn/ingredients_100x100/";
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -30,6 +30,7 @@ const SearchResults = ({ ingredients, addIngredient, resetValue, pantry }) => {
             borderRadius: "30px",
             backgroundColor: "secondary.main",
             mt: 1,
+            zIndex: "appBar"
           }}
         >
           {ingredients.map((ingredient) => (

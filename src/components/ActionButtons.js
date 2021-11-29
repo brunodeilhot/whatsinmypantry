@@ -1,5 +1,5 @@
 import { KitchenRounded, MenuBookRounded } from "@mui/icons-material";
-import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Paper, Toolbar } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 
@@ -17,6 +17,7 @@ const ActionButtons = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
+      <Toolbar />
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}

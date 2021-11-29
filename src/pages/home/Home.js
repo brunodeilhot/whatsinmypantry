@@ -1,3 +1,4 @@
+import { Box } from "@mui/system";
 import Intro from "./components/Intro";
 import MyPantry from "./components/MyPantry";
 import SearchIngredients from "./components/SearchIngredients";
