@@ -12,7 +12,7 @@ const RecipeList = ({ recipes }) => {
 
     return (
         <>
-        {recipes.length === 0 ? <NoRecipes /> : recipeList}
+        {recipes.length > 0 ? <NoRecipes /> : recipeList}
         </>
     )
 };
