@@ -8,7 +8,7 @@ const NoRecipes = () => {
     return (
         <Box sx={{ display: "flex", justifyContent: "center", alignContent: "center" }}>
             <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: "50%" }}>
-                <MenuBookRounded sx={{ fontSize: 100, color: "text.secondary", mb: 1 }} />
+                <MenuBookRounded sx={{ fontSize: "20vh", color: "text.secondary", mb: 1 }} />
                 <Typography component="p" variant="h4" color="text.secondary">
                     No recipes found.
                 </Typography>
