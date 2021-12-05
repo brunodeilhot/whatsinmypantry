@@ -10,7 +10,7 @@ const NoRecipes = () => {
             <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: "50%" }}>
                 <MenuBookRounded sx={{ fontSize: "20vh", color: "text.secondary", mb: 1 }} />
                 <Typography component="p" variant="h4" color="text.secondary">
-                    No recipes found.
+                    No recipes.
                 </Typography>
                 <Typography component="p" variant="body1" color="text.secondary">
                     Add some ingredients to your pantry.

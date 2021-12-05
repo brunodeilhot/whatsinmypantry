@@ -34,7 +34,7 @@ export function searchRecByIng(value, success) {
             includeIngredients: value,
             sort: "min-missing-ingredients",
             sortDirection: "asc",
-            number: 5
+            number: 6
         }
     })
     .then(parseJsonResults)
