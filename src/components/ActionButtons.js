@@ -2,13 +2,22 @@ import { KitchenRounded, MenuBookRounded } from "@mui/icons-material";
 import { BottomNavigation, BottomNavigationAction, Paper, Toolbar } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ActionButtons = () => {
   const [active, setActive] = useState(0);
 
   const ActionBtList = [
-    { name: "pantry", icon: <KitchenRounded sx={{ pr: 1, fontSize: 40 }} /> },
-    { name: "recipes", icon: <MenuBookRounded sx={{ pr: 1, fontSize: 40 }} /> },
+    {
+      name: "pantry",
+      icon: <KitchenRounded sx={{ pr: 1, fontSize: 40 }} />,
+      link: "/",
+    },
+    {
+      name: "recipes",
+      icon: <MenuBookRounded sx={{ pr: 1, fontSize: 40 }} />,
+      link: "/recipes",
+    },
   ];
 
   function handleIndexChange(e, index) {
@@ -30,6 +39,8 @@ const ActionButtons = () => {
         >
           {ActionBtList.map((item) => (
             <BottomNavigationAction
+              component={Link}
+              to={item.link}
               key={item.name}
               label={item.name.toUpperCase()}
               icon={item.icon}

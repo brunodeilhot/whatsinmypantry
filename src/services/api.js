@@ -23,17 +23,39 @@ export function searchIngredients(value, success) {
             number: 5
         }
     })
-    .then(parseJson)
+    .then(parseJsonResults)
     .then(success)
 }
 
-function parseJson(response) {
+export function searchRecByIng(value, success) {
+    return api.get('/recipes/complexSearch', {
+        params: {
+            ...apiKey,
+            query: "",
+            includeIngredients: value,
+            sort: "min-missing-ingredients",
+            sortDirection: "asc",
+            number: 6
+        }
+    })
+    .then(parseJsonResults)
+    .then(success)
+}
+
+function parseJsonResults(response) {
+    console.log(response.data.results)
     return response.data.results;
+}
+
+function parseJsonData(response) {
+    console.log(response)
+    return response.data;
 }
 
 const methods = {
     imageBaseURL,
-    searchIngredients
+    searchIngredients,
+    searchRecByIng
 };
 
 export default methods;
