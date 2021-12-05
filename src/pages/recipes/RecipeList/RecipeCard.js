@@ -11,6 +11,9 @@ import {
 import MissingIngWarning from "./MissingIng";
 
 const RecipeCard = ({ id, title, image, missingIng }) => {
+
+  const iconPosition = missingIng === 0 ? "flex-end" : "space-between";
+
   return (
     <Card
       sx={{
@@ -33,7 +36,7 @@ const RecipeCard = ({ id, title, image, missingIng }) => {
       <CardActions
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: iconPosition,
           flexGrow: 1,
           p: 0,
         }}

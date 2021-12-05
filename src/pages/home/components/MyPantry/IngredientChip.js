@@ -17,7 +17,7 @@ const IngredientChip = ({ ingredient, removeIngredient }) => {
     label={ingredient}
     deleteIcon={<HighlightOffRounded />}
     onDelete={(e) => removeIngredient(e, ingredient)}
-    sx={{ borderWidth: "2px" }}
+    sx={{ borderWidth: "2px", backgroundColor: "secondary.main"}}
   />
   );
 };

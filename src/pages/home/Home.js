@@ -9,8 +9,11 @@ import SearchIngredients from "./components/SearchIngredients";
 
     return (
       <>
+      <Box sx={{ position: "fixed", display: "flex", flexDirection: "column", minWidth: "100%", zIndex: "speedDial", backgroundColor:"background.paper", pb: 2 }}>
         <Intro />
         <SearchIngredients />
+        </Box>
+        <Box sx={{ minHeight: "45vh" }}></Box>
         <MyPantry />
       </>
     );

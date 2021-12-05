@@ -17,20 +17,20 @@ import { imageBaseURL } from "../../../../services/api";
 const SearchResults = ({ ingredients, addIngredient, resetValue, pantry }) => {
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box sx={{ display: "flex", justifyContent: "center"}}>
       <ClickAwayListener onClickAway={resetValue}>
         <List
           dense
           sx={{
             display: "flex",
             flexDirection: "column",
-            position: "fixed",
+            position: "fixed !important",
             minWidth: "80%",
             border: "3px solid #7FD7C3",
             borderRadius: "30px",
             backgroundColor: "secondary.main",
             mt: 1,
-            zIndex: "appBar"
+            zIndex: "tooltip"
           }}
         >
           {ingredients.map((ingredient) => (

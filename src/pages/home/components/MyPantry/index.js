@@ -14,16 +14,23 @@ const MyPantry = () => {
   }
 
   const ingredientList = ingredients.map((ingredient) => (
-    <Grid item key={ingredient} >
-      <IngredientChip ingredient={ingredient} removeIngredient={removeIngredient} />
+    <Grid item key={ingredient}>
+      <IngredientChip
+        ingredient={ingredient}
+        removeIngredient={removeIngredient}
+      />
     </Grid>
   ));
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <Grid container spacing={1} direction="column" sx={{ maxWidth: "80%", mt: 4, overflow: "scroll" }}>
-        {ingredients.length === 0 ? <EmptyPantry /> : ingredientList}
-      </Grid>
+    <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+      {ingredients.length === 0 ? (
+        <EmptyPantry />
+      ) : (
+        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 4 }}>
+          {ingredientList}
+        </Grid>
+      )}
     </Box>
   );
 };

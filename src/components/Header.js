@@ -8,10 +8,10 @@ const Header = () => {
       <AppBar color="inherit" sx={{ boxShadow: 0 }}>
         <Toolbar>
           <Typography
-            variant="h1"
+            variant="h6"
             component="h1"
             color="primary"
-            sx={{ fontSize: "h6.fontSize", fontWeight: "bold", flexGrow: 1 }}
+            sx={{ fontWeight: "bold", flexGrow: 1 }}
           >
             #whatsinmypantry
           </Typography>
