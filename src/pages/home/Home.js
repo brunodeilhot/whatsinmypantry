@@ -13,7 +13,7 @@ import SearchIngredients from "./components/SearchIngredients";
         <Intro />
         <SearchIngredients />
         </Box>
-        <Box sx={{ minHeight: "45vh" }}></Box>
+        <Box sx={{ minHeight: "320px" }}></Box>
         <MyPantry />
       </>
     );

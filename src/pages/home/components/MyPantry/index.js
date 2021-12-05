@@ -27,7 +27,7 @@ const MyPantry = () => {
       {ingredients.length === 0 ? (
         <EmptyPantry />
       ) : (
-        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 4 }}>
+        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 1 }}>
           {ingredientList}
         </Grid>
       )}
