@@ -5,23 +5,26 @@ import NoRecipes from "./NoRecipes";
 import RecipeList from "./RecipeList";
 
 const Recipes = () => {
-  const pantryState = useSelector((state) => state.myPantry)
+  const pantryState = useSelector((state) => state.myPantry);
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
+    if (pantryState.length > 0) {
+      searchRecByIng(pantryState.toString(), (searchResults) => {
+        setRecipes(searchResults);
+      });
+    }
+  }, [pantryState]);
 
-    searchRecByIng(pantryState.toString(), (searchResults) => {
-      setRecipes(searchResults)
-    })
-
-  }, []);
-
-  
   return (
     <>
-    {pantryState.length === 0 ? <NoRecipes /> : <RecipeList recipes={recipes} />}
+      {pantryState.length === 0 ? (
+        <NoRecipes />
+      ) : (
+        <RecipeList recipes={recipes} />
+      )}
     </>
-    );
+  );
 };
 
 export default Recipes;
