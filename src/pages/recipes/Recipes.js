@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { searchRecByIng } from "../../services/api";
 import NoRecipes from "./NoRecipes";
 import RecipeList from "./RecipeList";
 
 const Recipes = () => {
+  const pantryState = useSelector((state) => state.myPantry)
   const [recipes, setRecipes] = useState([]);
-  const testIngredients = ["tomato", "cheese", "chicken breast", "eggs"];
 
   useEffect(() => {
 
-    searchRecByIng(testIngredients.toString(), (searchResults) => {
+    searchRecByIng(pantryState.toString(), (searchResults) => {
       setRecipes(searchResults)
     })
 
@@ -18,7 +19,7 @@ const Recipes = () => {
   
   return (
     <>
-    {testIngredients.length === 0 ? <NoRecipes /> : <RecipeList recipes={recipes} />}
+    {pantryState.length === 0 ? <NoRecipes /> : <RecipeList recipes={recipes} />}
     </>
     );
 };
