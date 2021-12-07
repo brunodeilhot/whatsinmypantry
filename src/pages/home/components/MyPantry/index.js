@@ -1,6 +1,7 @@
-import { Grid } from "@mui/material";
+import { Fade, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
+import { TransitionGroup } from "react-transition-group";
 import EmptyPantry from "./EmptyPantry";
 import IngredientChip from "./IngredientChip";
 
@@ -14,12 +15,14 @@ const MyPantry = () => {
   }
 
   const ingredientList = ingredients.map((ingredient) => (
-    <Grid item key={ingredient}>
-      <IngredientChip
-        ingredient={ingredient}
-        removeIngredient={removeIngredient}
-      />
-    </Grid>
+    <Fade key={ingredient}>
+      <Grid item>
+        <IngredientChip
+          ingredient={ingredient}
+          removeIngredient={removeIngredient}
+        />
+      </Grid>
+    </Fade>
   ));
 
   return (
@@ -27,9 +30,11 @@ const MyPantry = () => {
       {ingredients.length === 0 ? (
         <EmptyPantry />
       ) : (
-        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 1 }}>
-          {ingredientList}
-        </Grid>
+        <TransitionGroup>
+          <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 1 }}>
+            {ingredientList}
+          </Grid>
+        </TransitionGroup>
       )}
     </Box>
   );
