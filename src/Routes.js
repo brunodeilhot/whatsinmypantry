@@ -3,6 +3,7 @@ import App from "./App";
 import Home from "./pages/home/Home";
 import Recipes from "./pages/recipes/Recipes";
 import NotFound from "./pages/notfound/NotFound";
+import Starred from "./pages/starred/Starred";
 
 const MainRoutes = () => {
 
@@ -11,6 +12,7 @@ const MainRoutes = () => {
             <Route path="/" element={<App/>}>
                 <Route index element={<Home />}/>
                 <Route path="/recipes" element={<Recipes />} />
+                <Route path="/starred" element={<Starred />} />
             </Route>
             <Route path="*" element={<NotFound />}/>
         </Routes>

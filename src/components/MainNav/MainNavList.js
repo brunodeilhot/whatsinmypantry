@@ -1,28 +1,37 @@
-import { RestaurantRounded, StarRateRounded } from "@mui/icons-material";
+import { KitchenRounded, MenuBookRounded, RestaurantRounded, StarRateRounded } from "@mui/icons-material";
 import {
   List,
   ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const MainNavList = () => {
   const navList = [
-    { name: "Starred Recipes", icon: <StarRateRounded color="secondary" /> },
-    { name: "My Meal Plan", icon: <RestaurantRounded color="secondary" /> },
+    { name: "My Pantry", icon: <KitchenRounded color="secondary" />, link: "/" },
+    { name: "Recipes", icon: <MenuBookRounded color="secondary" />, link: "/recipes" },
+    { name: "Starred Recipes", icon: <StarRateRounded color="secondary" />, link: "/starred" },
+    { name: "My Meal Plan", icon: <RestaurantRounded color="secondary" />, link: "/" },
   ];
 
   return (
-      <List>
-        {navList.map((item) => (
-          <ListItem component="li" button divider key={item.name}>
-              {item.icon === null ? null : (
-                <ListItemIcon>{item.icon}</ListItemIcon>
-              )}
-              <ListItemText primary={item.name} primaryTypographyProps={{ color: 'secondary', align: 'right' }} /> 
-          </ListItem>
-        ))}
-      </List>
+    <List>
+      {navList.map((item) => (
+        <ListItem component="li" divider disablePadding key={item.name}>
+          <ListItemButton component={Link} to={item.link}>
+            {item.icon === null ? null : (
+              <ListItemIcon>{item.icon}</ListItemIcon>
+            )}
+            <ListItemText
+              primary={item.name}
+              primaryTypographyProps={{ color: "secondary", align: "right" }}
+            />
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
   );
 };
 

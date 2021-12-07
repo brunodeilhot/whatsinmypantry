@@ -5,14 +5,18 @@ import reportWebVitals from "./reportWebVitals";
 import { CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from "./store";
+import Loading from "./components/Loading";
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <BrowserRouter>
       <Provider store={store}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <MainRoutes />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

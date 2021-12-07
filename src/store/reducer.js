@@ -6,11 +6,22 @@ export default function reducer(state, action) {
         myPantry: [...state.myPantry, action.payload]
       }
     case 'REMOVE_INGREDIENT':
-      const index = state.myPantry.indexOf(action.payload);
-      state.myPantry.splice(index, 1);
+      const ingIndex = state.myPantry.indexOf(action.payload);
+      state.myPantry.splice(ingIndex, 1);
       return {
         ...state,
         myPantry: [...state.myPantry]
+      }
+    case 'ADD_STARRED':
+      return {
+        ...state,
+        starredRecipes: [...state.starredRecipes, action.payload]
+      }
+    case 'REMOVE_STARRED':
+      state.starredRecipes.splice(action.payload, 1);
+      return {
+        ...state,
+        starredRecipes: [...state.starredRecipes]
       }
     default:
       return state;

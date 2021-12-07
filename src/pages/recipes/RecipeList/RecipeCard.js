@@ -10,9 +10,22 @@ import {
 } from "@mui/material";
 import MissingIngWarning from "./MissingIng";
 
-const RecipeCard = ({ id, title, image, missingIng }) => {
+const RecipeCard = ({
+  id,
+  title,
+  image,
+  missingIng,
+  toggleStarred,
+  starredRecipes,
+}) => {
+  const iconPosition =
+    missingIng === undefined || 0 ? "flex-end" : "space-between";
 
-  const iconPosition = missingIng === 0 ? "flex-end" : "space-between";
+  const starredData = {
+    id: id,
+    title: title,
+    image: image,
+  };
 
   return (
     <Card
@@ -22,7 +35,7 @@ const RecipeCard = ({ id, title, image, missingIng }) => {
         minHeight: "100%",
         borderRadius: "22px",
         backgroundColor: "secondary.main",
-        boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.03)"
+        boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.03)",
       }}
     >
       <CardActionArea>
@@ -41,9 +54,18 @@ const RecipeCard = ({ id, title, image, missingIng }) => {
           p: 0,
         }}
       >
-        {missingIng === 0 ? null : <MissingIngWarning missingIng={missingIng} />}
-        <IconButton sx={{ alignSelf: "flex-end" }}>
-          <StarRateRounded />
+        {missingIng === undefined || 0 ? null : (
+          <MissingIngWarning missingIng={missingIng} />
+        )}
+        <IconButton
+          onClick={(e) => toggleStarred(e, starredData)}
+          sx={{ alignSelf: "flex-end" }}
+        >
+          {starredRecipes.findIndex((recipe) => recipe.id === id) === -1 ? (
+            <StarRateRounded />
+          ) : (
+            <StarRateRounded sx={{ color: "#F6E258" }} />
+          )}
         </IconButton>
       </CardActions>
     </Card>
