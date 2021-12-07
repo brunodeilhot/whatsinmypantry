@@ -7,7 +7,7 @@ const EmptyPantry = () => {
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <KitchenRounded sx={{ fontSize: "20vh", color: "text.secondary", mt: 5 }} />
+      <KitchenRounded sx={{ fontSize: "20vh", color: "text.secondary", mt: 4 }} />
       <Typography variant="h4" component="p" color="text.secondary">
         Your pantry is empty.
       </Typography>

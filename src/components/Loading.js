@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 
 
-const RecipesLoading = () => {
+const Loading = () => {
 
     return (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -14,4 +14,4 @@ const RecipesLoading = () => {
     )
 };
 
-export default RecipesLoading;
+export default Loading;

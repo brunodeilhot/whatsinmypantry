@@ -1,51 +1,50 @@
-import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material';
-import { Box } from '@mui/system';
-import { Outlet } from 'react-router';
-import ActionButtons from './components/ActionButtons';
-import Header from './components/Header';
-
+import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material";
+import { Box } from "@mui/system";
+import { Outlet } from "react-router";
+import ActionButtons from "./components/ActionButtons";
+import Header from "./components/Header";
 
 const theme = createTheme({
   typography: {
-      button: {
-          textTransform: 'none'
-      }
+    button: {
+      textTransform: "none",
+    },
   },
   palette: {
     primary: {
-      main: '#7FD7C3'
+      main: "#7FD7C3",
     },
     secondary: {
-      main: '#FFFFFF',
+      main: "#FFFFFF",
     },
     text: {
-      primary: '#383A47',
-      secondary: '#E5E5E5'
+      primary: "#383A47",
+      secondary: "#E5E5E5",
     },
     background: {
-      paper: '#FAFAFA',
-      default: '#FAFAFA'
+      paper: "#FAFAFA",
+      default: "#FAFAFA",
     },
-    divider: 'rgba(255, 255, 255, 0.3)'
+    divider: "rgba(255, 255, 255, 0.3)",
   },
   components: {
     MuiButtonBase: {
       defaultProps: {
         disableRipple: true,
         disableTouchRipple: true,
-        focusRipple: true
-      }
+        focusRipple: true,
+      },
     },
     MuiIconButton: {
       styleOverrides: {
         root: {
-          '&:hover': {
-            backgroundColor: "transparent"
-          }
-        }
-      }
-    }
-  }
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
+  },
 });
 
 const responsiveTheme = responsiveFontSizes(theme);
@@ -53,10 +52,10 @@ const responsiveTheme = responsiveFontSizes(theme);
 function App() {
   return (
     <ThemeProvider theme={responsiveTheme}>
-      <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default'}}>
-      <Header />
-      <Outlet />
-      <ActionButtons />
+      <Box sx={{ minHeight: "100vh", backgroundColor: "background.default" }}>
+        <Header />
+        <Outlet />
+        <ActionButtons />
       </Box>
     </ThemeProvider>
   );
