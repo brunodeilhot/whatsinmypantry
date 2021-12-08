@@ -30,11 +30,9 @@ const MyPantry = () => {
       {ingredients.length === 0 ? (
         <EmptyPantry />
       ) : (
-        <TransitionGroup>
-          <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 1 }}>
-            {ingredientList}
-          </Grid>
-        </TransitionGroup>
+        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 1 }}>
+          <TransitionGroup component={null}>{ingredientList}</TransitionGroup>
+        </Grid>
       )}
     </Box>
   );
