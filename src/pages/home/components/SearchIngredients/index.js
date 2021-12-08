@@ -3,7 +3,7 @@ import SearchResults from "./SearchResults";
 import { useEffect, useState } from "react";
 import debounce from "@mui/utils/debounce";
 import { useDispatch, useSelector } from "react-redux";
-import { searchIngredients } from "../../../../services/api";
+import { searchIngredients } from "../../../../services";
 import { Box } from "@mui/system";
 
 const SearchIngredients = () => {

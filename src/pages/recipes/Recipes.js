@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { searchRecByIng } from "../../services/api";
+import { Outlet } from "react-router";
+import { searchRecByIng } from "../../services";
 import NoRecipes from "./NoRecipes";
 import RecipeList from "./RecipeList";
 
@@ -57,7 +58,6 @@ const Recipes = () => {
     if (testRecipes.length > 0) {
       setRecipes(testRecipes);
     }
-
   }, []);
 
   return (
@@ -67,6 +67,7 @@ const Recipes = () => {
       ) : (
         <RecipeList recipes={recipes} />
       )}
+      <Outlet />
     </>
   );
 };

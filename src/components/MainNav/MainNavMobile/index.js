@@ -27,9 +27,11 @@ const MainNavMobile = () => {
         anchor="right"
         open={navState}
         onClose={toggleNav}
-        PaperProps={{ sx: { backgroundColor: "primary.main", maxWidth: '70%' } }}
+        PaperProps={{
+          sx: { backgroundColor: "primary.main", maxWidth: "70%" },
+        }}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <IconButton
             onClick={toggleNav}
             color="secondary"
@@ -42,7 +44,14 @@ const MainNavMobile = () => {
         <Box component="nav" role="navigation" onClick={toggleNav}>
           <MainNavList />
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', height: '100%'}} >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            height: "100%",
+          }}
+        >
           <About />
         </Box>
       </Drawer>

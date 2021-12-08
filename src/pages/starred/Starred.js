@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Outlet } from "react-router";
 import NoRecipes from "../recipes/NoRecipes";
 import RecipeList from "../recipes/RecipeList";
 
@@ -12,6 +13,7 @@ const Starred = () => {
       ) : (
         <RecipeList recipes={starredRecipes} />
       )}
+      <Outlet />
     </>
   );
 };

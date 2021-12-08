@@ -8,6 +8,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 import MissingIngWarning from "./MissingIng";
 
 const RecipeCard = ({
@@ -16,7 +17,7 @@ const RecipeCard = ({
   image,
   missingIng,
   toggleStarred,
-  starredRecipes,
+  starredRecipes
 }) => {
   const iconPosition =
     missingIng === undefined || 0 ? "flex-end" : "space-between";
@@ -38,7 +39,7 @@ const RecipeCard = ({
         boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.03)",
       }}
     >
-      <CardActionArea>
+      <CardActionArea component={Link} to={`${id}`}>
         <CardMedia component="img" image={image} height="100%" alt={title} />
         <CardContent sx={{ p: 1, pb: 0 }}>
           <Typography component="h2" variant="body2" sx={{ fontWeight: "700" }}>

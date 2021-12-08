@@ -12,12 +12,11 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { imageBaseURL } from "../../../../services/api";
+import { imageBaseURL } from "../../../../services";
 
 const SearchResults = ({ ingredients, addIngredient, resetValue, pantry }) => {
-
   return (
-    <Box sx={{ display: "flex", justifyContent: "center"}}>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       <ClickAwayListener onClickAway={resetValue}>
         <List
           dense
@@ -30,7 +29,7 @@ const SearchResults = ({ ingredients, addIngredient, resetValue, pantry }) => {
             borderRadius: "30px",
             backgroundColor: "secondary.main",
             mt: 1,
-            zIndex: "tooltip"
+            zIndex: "tooltip",
           }}
         >
           {ingredients.map((ingredient) => (

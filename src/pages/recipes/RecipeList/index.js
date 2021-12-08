@@ -2,8 +2,10 @@ import RecipeCard from "./RecipeCard";
 import { Grid } from "@mui/material";
 import Loading from "../../../components/Loading";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
 
 const RecipeList = ({ recipes }) => {
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const starredRecipes = useSelector((state) => state.starredRecipes);
@@ -28,6 +30,7 @@ const RecipeList = ({ recipes }) => {
         missingIng={recipe.missedIngredientCount}
         toggleStarred={toggleStarred}
         starredRecipes={starredRecipes}
+        location={location}
       />
     </Grid>
   ));
