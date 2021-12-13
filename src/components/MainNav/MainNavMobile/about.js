@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import Logo from "../../../assets/App-Mascot@x2.png"
+import Logo from "../../../assets/Logo.svg"
 
 const About = () => {
   return (
