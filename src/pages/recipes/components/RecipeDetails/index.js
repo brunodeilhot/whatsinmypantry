@@ -1,15 +1,13 @@
-import { CloseRounded } from "@mui/icons-material";
-import { Dialog, Grid, IconButton, Slide, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Dialog, Grid, Slide } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { getRecipeDetails } from "../../../../services";
-import Header from "./Header"
-import Intro from "./Intro"
-import Ingredients from "./Ingredients"
-import Instructions from "./Instructions"
-import Footer from "./Footer"
-
+import Header from "./Header";
+import Intro from "./Intro";
+import Ingredients from "./Ingredients";
+import Instructions from "./Instructions";
+import Footer from "./Footer";
+import Loading from "../../../../components/Loading";
 
 const RecipeDetails = () => {
   let navigate = useNavigate();
@@ -18,7 +16,21 @@ const RecipeDetails = () => {
   const [open, setOpen] = useState(true);
   const [recipeDetails, setRecipeDetails] = useState([]);
 
-  const { image } = recipeDetails;
+  const {
+    image,
+    title,
+    readyInMinutes,
+    healthScore,
+    glutenFree,
+    dairyFree,
+    vegan,
+    vegetarian,
+    extendedIngredients,
+    servings,
+    analyzedInstructions,
+    sourceName,
+    sourceUrl
+  } = recipeDetails;
 
   const handleTransition = () => {
     setOpen(false);
@@ -39,10 +51,34 @@ const RecipeDetails = () => {
     });
   }, []);
 
+  const details = (
+    <Grid container>
+      <Grid container item>
+        <Header handleTransition={handleTransition} image={image} />
+      </Grid>
+      <Grid container item direction="column" alignItems="stretch" pl={2.5} pr={2.5}>
+        <Intro
+          title={title}
+          readyInMinutes={readyInMinutes}
+          healthScore={healthScore}
+          glutenFree={glutenFree}
+          dairyFree={dairyFree}
+          vegetarian={vegetarian}
+          vegan={vegan}
+        />
+        <Ingredients
+          extendedIngredients={extendedIngredients}
+          servings={servings}
+        />
+        <Instructions analyzedInstructions={analyzedInstructions} />
+        <Footer sourceName={sourceName} sourceUrl={sourceUrl} />
+      </Grid>
+    </Grid>
+  );
+
   return (
     <Dialog
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
+      aria-labelledby="recipe-details-title"
       fullScreen
       open={open}
       onClose={handleTransition}
@@ -50,43 +86,7 @@ const RecipeDetails = () => {
       TransitionProps={{ direction: "up", timeout: 1000 }}
       hideBackdrop
     >
-      <Grid
-        container
-        direction="column"
-        alignItems="stretch"
-      >
-        <Grid container item>
-          <Header handleTransition={handleTransition} image={image} />
-        </Grid>
-        <Grid container item>
-          <Intro />
-        </Grid>
-        <Grid container item>
-          <Ingredients />
-        </Grid>
-        <Grid container item>
-          <Instructions />
-        </Grid>
-        <Grid container item>
-          <Footer />
-        </Grid>
-      </Grid>
-      {/* <Box sx={{ p: 2 }}>
-        <IconButton
-          aria-label="close"
-          color="primary"
-          onClick={handleTransition}
-        >
-          <CloseRounded />
-        </IconButton>
-        <Typography id="transition-modal-title" variant="h6" component="h2">
-          Recipe #{id} Details
-        </Typography>
-        <Typography
-          id="transition-modal-description"
-          sx={{ mt: 2, mb: 2 }}
-        ></Typography>
-      </Box> */}
+      {recipeDetails.length === 0 ? <Loading /> : details}
     </Dialog>
   );
 };

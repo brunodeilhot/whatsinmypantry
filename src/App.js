@@ -8,6 +8,9 @@ const theme = createTheme({
   typography: {
     button: {
       textTransform: "none",
+      "&:hover": {
+        backgroundColor: "none"
+      }
     },
   },
   palette: {
