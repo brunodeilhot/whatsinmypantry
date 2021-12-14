@@ -1,6 +1,6 @@
 import RecipeCard from "./RecipeCard";
 import { Grid } from "@mui/material";
-import Loading from "../../../components/Loading";
+import Loading from "../../../../components/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 

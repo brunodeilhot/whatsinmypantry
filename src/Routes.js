@@ -4,7 +4,7 @@ import Home from "./pages/home/Home";
 import Recipes from "./pages/recipes/Recipes";
 import NotFound from "./pages/notfound/NotFound";
 import Starred from "./pages/starred/Starred";
-import RecipeDetails from "./pages/recipes/RecipeList/RecipeDetails";
+import RecipeDetails from "./pages/recipes/components/RecipeDetails";
 
 const MainRoutes = () => {
   return (

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import { searchRecByIng } from "../../services";
-import NoRecipes from "./NoRecipes";
-import RecipeList from "./RecipeList";
+import NoRecipes from "./components/NoRecipes";
+import RecipeList from "./components/RecipeList";
 
 const Recipes = () => {
   const pantryState = useSelector((state) => state.myPantry);
