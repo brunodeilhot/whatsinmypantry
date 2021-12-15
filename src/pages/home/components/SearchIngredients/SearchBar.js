@@ -29,7 +29,7 @@ const SearchBar = ({ handleChange, value }) => {
     >
       <SearchIgredientsInput
         autoFocus
-        defaultValue={value}
+        value={value}
         onChange={handleChange}
         id="ingredient-search"
         placeholder="e.g. tomato"

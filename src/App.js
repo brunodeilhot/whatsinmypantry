@@ -47,6 +47,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "#FFFFFF",
+          },
+        },
+      },
+    }
   },
 });
 

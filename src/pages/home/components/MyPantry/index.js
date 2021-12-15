@@ -30,7 +30,7 @@ const MyPantry = () => {
       {ingredients.length === 0 ? (
         <EmptyPantry />
       ) : (
-        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 1 }}>
+        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 5 }}>
           <TransitionGroup component={null}>{ingredientList}</TransitionGroup>
         </Grid>
       )}

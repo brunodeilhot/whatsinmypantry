@@ -28,17 +28,17 @@ export function searchIngredients(value, success) {
     .then(success);
 }
 
-export function searchRecByIng(value, success) {
+export function searchRecByIng(value, offset, number, success) {
   return api
     .get("/recipes/complexSearch", {
       params: {
         ...apiKey,
-        query: "",
         includeIngredients: value,
         sort: "min-missing-ingredients",
         sortDirection: "asc",
-        type: "breakfast",
-        number: 20,
+        offset: offset,
+        // type: "breakfast",
+        number: number,
       },
     })
     .then(parseJsonResults)
@@ -50,7 +50,7 @@ export function getRecipeDetails(value, success) {
     .get(`/recipes/${value}/information`, {
       params: {
         ...apiKey,
-        includeNutrition: true,
+        // includeNutrition: true,
       },
     })
     .then(parseJsonData)
