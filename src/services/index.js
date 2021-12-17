@@ -41,6 +41,7 @@ export function searchRecByIng(value, offset, number, success) {
         number: number,
       },
     })
+    .catch((error) => apiLimit(error))
     .then(parseJsonResults)
     .then(success);
 }
@@ -53,6 +54,7 @@ export function getRecipeDetails(value, success) {
         // includeNutrition: true,
       },
     })
+    .catch((error) => apiLimit(error))
     .then(parseJsonData)
     .then(success);
 }
@@ -65,6 +67,12 @@ function parseJsonResults(response) {
 function parseJsonData(response) {
   console.log(response.data);
   return response.data;
+}
+
+function apiLimit(error) {
+  if(error.response.status === 402) {
+    return 402
+  }
 }
 
 const methods = {

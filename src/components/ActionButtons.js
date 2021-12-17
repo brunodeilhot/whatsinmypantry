@@ -26,10 +26,11 @@ const ActionButtons = () => {
   const location = useLocation();
   const path = location.pathname;
 
-  const [active, setActive] = useState(path);
   const [showActionBt, setShowActionBt] = useState(true);
+  const [active, setActive] = useState(path);
 
   useEffect(() => {
+    
     const actionButtons = actionBtList
       .map((button) => button.link)
       .indexOf(path);
@@ -38,7 +39,7 @@ const ActionButtons = () => {
     }
     setShowActionBt(true);
     setActive(path);
-  }, [location]);
+  }, [path]);
 
   function handlePathChange(e, value) {
     setActive(value);

@@ -30,8 +30,12 @@ const SearchIngredients = () => {
 
   useEffect(() => {
     if (debouncedValue.length >= 3) {
-        searchIngredients(debouncedValue, (searchResult) =>
-        setIngredientResults(searchResult)
+        searchIngredients(debouncedValue, (searchResults) => {
+          if (searchResults === 402) {
+            return dispatch({ type: "API_LIMIT", payload: true });
+          }
+          setIngredientResults(searchResults);
+        }
       );
     }
 
@@ -49,8 +53,7 @@ const SearchIngredients = () => {
     //   return setIngredientResults(testIngredients);
     // }
     setIngredientResults([]);
-
-  }, [debouncedValue]);
+  }, [debouncedValue, dispatch]);
 
   return (
     <>

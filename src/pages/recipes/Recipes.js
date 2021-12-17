@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { searchRecByIng } from "../../services";
@@ -7,6 +7,8 @@ import NoRecipes from "./components/NoRecipes";
 import RecipeList from "./components/RecipeList";
 
 const Recipes = () => {
+  const dispatch = useDispatch();
+
   const pantryState = useSelector((state) => state.myPantry);
   const [recipes, setRecipes] = useState([]);
   const [totalRecipes, setTotalRecipes] = useState(20);
@@ -65,6 +67,10 @@ const Recipes = () => {
         offset.toString(),
         totalRecipes.toString(),
         (searchResults) => {
+          if (searchResults === 402) {
+            return dispatch({ type: "API_LIMIT", payload: true });
+          }
+          dispatch({ type: "API_LIMIT", payload: false });
           setRecipes(searchResults);
         }
       );
@@ -73,7 +79,7 @@ const Recipes = () => {
     // if (testRecipes.length > 0) {
     //   setRecipes(testRecipes);
     // }
-  }, [pantryState, offset, totalRecipes]);
+  }, [pantryState, offset, totalRecipes, dispatch]);
 
   return (
     <>

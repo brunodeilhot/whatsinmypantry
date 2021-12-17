@@ -1,6 +1,6 @@
 import { Dialog, Grid, Slide } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, useMatch } from "react-router";
 import { getRecipeDetails } from "../../../../services";
 import Header from "./Header";
 import Intro from "./Intro";
@@ -8,10 +8,14 @@ import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
 import Footer from "./Footer";
 import Loading from "../../../../components/Loading";
+import { useDispatch } from "react-redux";
 
 const RecipeDetails = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
+  const matchRecipes = useMatch("recipes/*");
+
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(true);
   const [recipeDetails, setRecipeDetails] = useState([]);
@@ -29,7 +33,7 @@ const RecipeDetails = () => {
     servings,
     analyzedInstructions,
     sourceName,
-    sourceUrl
+    sourceUrl,
   } = recipeDetails;
 
   const handleTransition = () => {
@@ -37,26 +41,39 @@ const RecipeDetails = () => {
     setTimeout(handleClose, 800);
   };
 
-  // Returns to recipes page
-  // Didn't use (-1) so it doesn't rely on browser history
-  // This way if users travel directly to this page they
-  // get redirected to the recipe page instead of previous page
+  // Closing the Recipe Details page will return to previous page
+  // wether that page was starred or recipes, even if the user
+  // came from outside the app
   const handleClose = () => {
-    navigate("/recipes");
+    if (matchRecipes) {
+      return navigate("/recipes");
+    }
+    navigate("/starred");
   };
 
   useEffect(() => {
     getRecipeDetails(id, (searchResults) => {
+      if (searchResults === 402) {
+        return dispatch({ type: "API_LIMIT", payload: true });
+      }
+      dispatch({ type: "API_LIMIT", payload: false });
       setRecipeDetails(searchResults);
     });
-  }, []);
+  }, [id]);
 
   const details = (
     <Grid container>
       <Grid container item>
         <Header handleTransition={handleTransition} image={image} />
       </Grid>
-      <Grid container item direction="column" alignItems="stretch" pl={2.5} pr={2.5}>
+      <Grid
+        container
+        item
+        direction="column"
+        alignItems="stretch"
+        pl={2.5}
+        pr={2.5}
+      >
         <Intro
           title={title}
           readyInMinutes={readyInMinutes}

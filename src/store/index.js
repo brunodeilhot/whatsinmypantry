@@ -10,7 +10,8 @@ const persistConfig = {
 
 const initialState = {
   myPantry: [],
-  starredRecipes: []
+  starredRecipes: [],
+  apiLimitReached: false,
 }
 
 const persistedReducer = persistReducer(persistConfig, reducer);

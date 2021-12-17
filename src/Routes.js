@@ -1,16 +1,20 @@
 import { Route, Routes } from "react-router";
+import useMediaQuery from '@mui/material/useMediaQuery';
 import App from "./App";
 import Home from "./pages/home/Home";
 import Recipes from "./pages/recipes/Recipes";
-import NotFound from "./pages/notfound/NotFound";
 import Starred from "./pages/starred/Starred";
 import RecipeDetails from "./pages/recipes/components/RecipeDetails";
+import ErrorPage from "./components/ErrorPage";
 
 const MainRoutes = () => {
+
+  const desktop = useMediaQuery('(min-width:600px)');
+
   return (
     <Routes>
       <Route path="/" element={<App />}>
-        <Route index element={<Home />} />
+        { desktop === false && <Route index element={<Home />} /> }
         <Route path="/recipes" element={<Recipes />}>
           <Route path=":id" element={<RecipeDetails />} />
         </Route>
@@ -18,7 +22,7 @@ const MainRoutes = () => {
           <Route path=":id" element={<RecipeDetails />} />
         </Route>
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };

@@ -23,6 +23,11 @@ export default function reducer(state, action) {
         ...state,
         starredRecipes: [...state.starredRecipes]
       }
+    case 'API_LIMIT':
+      return {
+        ...state,
+        apiLimitReached: action.payload
+      }
     default:
       return state;
   }
