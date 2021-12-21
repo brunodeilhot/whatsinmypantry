@@ -11,7 +11,7 @@ import Footer from "./Footer";
 import Loading from "../../../../components/Loading";
 import ErrorPage from "../../../../components/ErrorPage";
 
-const RecipeDetails = () => {
+const RecipeDetails = ({ desktop }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { desktop } = useSelector((state) => state.mediaqueries);
