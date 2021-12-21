@@ -9,17 +9,18 @@ import ErrorPage from "./components/ErrorPage";
 
 const MainRoutes = () => {
 
-  const desktop = useMediaQuery('(min-width:600px)');
+  const desktop = useMediaQuery('(min-width:700px)');
+  const desktopLg = useMediaQuery('(min-width:1200px)');
 
   return (
     <Routes>
-      <Route path="/" element={<App />}>
-        { desktop === false && <Route index element={<Home />} /> }
-        <Route path="/recipes" element={<Recipes />}>
-          <Route path=":id" element={<RecipeDetails />} />
+      <Route path="/" element={<App desktop={desktop} desktopLg={desktopLg} />}>
+        {!desktop && <Route index element={<Home desktop={desktop} />} />}
+        <Route path="recipes" element={<Recipes />}>
+          <Route path=":id" element={<RecipeDetails desktop={desktop} />} />
         </Route>
-        <Route path="/starred" element={<Starred />}>
-          <Route path=":id" element={<RecipeDetails />} />
+        <Route path="starred" element={<Starred />}>
+          <Route path=":id" element={<RecipeDetails desktop={desktop} />} />
         </Route>
       </Route>
       <Route path="*" element={<ErrorPage />} />

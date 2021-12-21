@@ -6,7 +6,7 @@ const Loading = () => {
 
     return (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Box sx={{ m: "50%" }}>
+            <Box sx={{ m: "30vh" }}>
                 <CircularProgress size={100} color="primary" />
             </Box>
         </Box>

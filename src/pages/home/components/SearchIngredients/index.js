@@ -1,16 +1,36 @@
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchIngredients } from "../../../../services";
 import { useDebounce } from "use-debounce/lib";
 
-
 const SearchIngredients = () => {
   const dispatch = useDispatch();
-
   const pantry = useSelector((state) => state.myPantry);
 
+  // State and function that controls the width of the search results
+  // Width of search results is always the same as the search bar
+  const searchBarRef = useRef();
+  const [searchBarWidth, setWidth] = useState();
+
+  const getSearchBarWidth = () => {
+    const widthRef = searchBarRef.current;
+    if (widthRef === null) {
+      return;
+    }
+    setWidth(widthRef.clientWidth);
+  };
+
+  useEffect(() => {
+    getSearchBarWidth();
+    window.addEventListener("resize", getSearchBarWidth);
+  }, []);
+
+  // State and functions that manage the values received on the search input
+  // The debounced value is used to fetch a list of ingredients
+  // Ingredients fetched state is then forwarded to the search results component
+  // When ingredient is added it is dispatched to the redux store
   const [value, setValue] = useState("");
   const [debouncedValue] = useDebounce(value, 500);
   const [ingredientResults, setIngredientResults] = useState([]);
@@ -30,13 +50,12 @@ const SearchIngredients = () => {
 
   useEffect(() => {
     if (debouncedValue.length >= 3) {
-        searchIngredients(debouncedValue, (searchResults) => {
-          if (searchResults === 402) {
-            return dispatch({ type: "API_LIMIT", payload: true });
-          }
-          setIngredientResults(searchResults);
+      searchIngredients(debouncedValue, (searchResults) => {
+        if (searchResults === 402) {
+          return dispatch({ type: "API_LIMIT", payload: true });
         }
-      );
+        setIngredientResults(searchResults);
+      });
     }
 
     // const testIngredients = [
@@ -57,9 +76,14 @@ const SearchIngredients = () => {
 
   return (
     <>
-      <SearchBar value={value} handleChange={handleChange} />
+      <SearchBar
+        searchBarRef={searchBarRef}
+        value={value}
+        handleChange={handleChange}
+      />
       {ingredientResults.length > 0 ? (
         <SearchResults
+          searchBarWidth={searchBarWidth}
           ingredients={ingredientResults}
           addIngredient={addIngredient}
           resetValue={resetValue}

@@ -1,25 +1,25 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import MainNavList from "./MainNav/MainNavList";
 import MainNavMobile from "./MainNav/MainNavMobile";
 
-const Header = () => {
+const Header = ({ desktop, desktopLg }) => {
   return (
-    <Box component="header" sx={{ flexGrow: 1 }}>
-      <AppBar color="inherit" sx={{ boxShadow: 0 }}>
+    <>
+      <AppBar color={desktop ? "primary" : "inherit"} elevation={!desktop ? 0 : 4}>
         <Toolbar>
           <Typography
             variant="h6"
             component="h1"
-            color="primary"
+            color={desktop ? "secondary" : "primary"}
             sx={{ fontWeight: "bold", flexGrow: 1 }}
           >
             #whatsinmypantry
           </Typography>
-          <MainNavMobile />
+          {desktop ? <MainNavList desktop={desktop} desktopLg={desktopLg} /> : <MainNavMobile />}
         </Toolbar>
       </AppBar>
       <Toolbar />
-    </Box>
+    </>
   );
 };
 

@@ -83,7 +83,7 @@ const Recipes = () => {
 
   return (
     <>
-      {testRecipes.length === 0 ? (
+      {pantryState.length === 0 ? (
         <NoRecipes />
       ) : (
         <InfiniteScroll

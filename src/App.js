@@ -1,80 +1,64 @@
-import { createTheme, responsiveFontSizes, ThemeProvider } from "@mui/material";
-import { Box } from "@mui/system";
+import { Drawer, ThemeProvider, Toolbar } from "@mui/material";
+import { Box, styled } from "@mui/system";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate, useMatch } from "react-router";
+import responsiveTheme from "./Theme";
 import ActionButtons from "./components/ActionButtons";
 import Header from "./components/Header";
 import ErrorPage from "./components/ErrorPage";
+import Home from "./pages/home/Home";
 
-function App() {
+const App = ({ desktop, desktopLg }) => {
   const apiLimit = useSelector((state) => state.apiLimitReached);
+  const navigate = useNavigate();
+  const matchRoute = useMatch("/");
 
-  const theme = createTheme({
-    typography: {
-      button: {
-        textTransform: "none",
-        "&:hover": {
-          backgroundColor: "none",
-        },
-      },
+  useEffect(() => {
+    if (desktop && matchRoute) {
+      navigate("recipes");
+    }
+  }, [desktop, matchRoute, navigate]);
+
+  const drawerWidth = desktopLg ? "30%" : "40%";
+
+  const PermanentDrawer = styled(Drawer)({
+    "& .MuiDrawer-docked": {
+      width: drawerWidth,
+      flexShrink: 0,
     },
-    palette: {
-      primary: {
-        main: "#7FD7C3",
-      },
-      secondary: {
-        main: "#FFFFFF",
-      },
-      text: {
-        primary: "#383A47",
-        secondary: "#E5E5E5",
-      },
-      background: {
-        paper: "#FAFAFA",
-        default: "#FAFAFA",
-      },
-      divider: "rgba(255, 255, 255, 0.3)",
-    },
-    components: {
-      MuiButtonBase: {
-        defaultProps: {
-          disableRipple: true,
-          disableTouchRipple: true,
-          focusRipple: true,
-        },
-      },
-      MuiIconButton: {
-        styleOverrides: {
-          root: {
-            "&:hover": {
-              backgroundColor: "transparent",
-            },
-          },
-        },
-      },
-      MuiFab: {
-        styleOverrides: {
-          root: {
-            "&:hover": {
-              backgroundColor: "#FFFFFF",
-            },
-          },
-        },
-      },
+    "& .MuiDrawer-paper": {
+      width: drawerWidth,
+      boxSizing: "border-box",
+      zIndex: 1050,
     },
   });
 
-  const responsiveTheme = responsiveFontSizes(theme);
+  const outlet = desktop ? (
+    <Box ml={drawerWidth}>
+      <Outlet />
+    </Box>
+  ) : (
+    <Outlet />
+  );
 
   return (
     <ThemeProvider theme={responsiveTheme}>
-      <Box sx={{ minHeight: "100vh", backgroundColor: "background.default" }}>
-        <Header />
-        {apiLimit ? <ErrorPage apiLimit={apiLimit} /> : <Outlet />}
-        <ActionButtons />
+      <Box minHeight="100vh" backgroundColor="background.default">
+        <Header desktop={desktop} desktopLg={desktopLg} />
+        {desktop && (
+          <PermanentDrawer variant="permanent">
+            <Toolbar />
+            <Box overflow="auto">
+              <Home desktop={desktop} />
+            </Box>
+          </PermanentDrawer>
+        )}
+        {apiLimit ? <ErrorPage apiLimit={apiLimit} /> : outlet}
+        {!desktop && <ActionButtons />}
       </Box>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

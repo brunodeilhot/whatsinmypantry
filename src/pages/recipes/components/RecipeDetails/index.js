@@ -10,7 +10,7 @@ import Footer from "./Footer";
 import Loading from "../../../../components/Loading";
 import { useDispatch } from "react-redux";
 
-const RecipeDetails = () => {
+const RecipeDetails = ({ desktop }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const matchRecipes = useMatch("recipes/*");
@@ -59,7 +59,7 @@ const RecipeDetails = () => {
       dispatch({ type: "API_LIMIT", payload: false });
       setRecipeDetails(searchResults);
     });
-  }, [id]);
+  }, [dispatch, id]);
 
   const details = (
     <Grid container>
@@ -96,12 +96,12 @@ const RecipeDetails = () => {
   return (
     <Dialog
       aria-labelledby="recipe-details-title"
-      fullScreen
       open={open}
       onClose={handleTransition}
       TransitionComponent={Slide}
       TransitionProps={{ direction: "up", timeout: 1000 }}
-      hideBackdrop
+      fullScreen={!desktop}
+      hideBackdrop={!desktop}
     >
       {recipeDetails.length === 0 ? <Loading /> : details}
     </Dialog>

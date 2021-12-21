@@ -6,6 +6,7 @@ const Header = ({ handleTransition, image }) => {
     minHeight: "30vh",
     background: `url(${image}) no-repeat`,
     backgroundSize: "cover",
+    backgroundPosition: "center",
     backgroundColor: "text.secondary",
     borderBottom: "5px solid",
     borderColor: "primary.main",

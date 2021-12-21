@@ -14,7 +14,7 @@ const NoRecipes = ({ starred }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mt: "50%",
+          mt: "30vh",
         }}
       >
         {starred ? (

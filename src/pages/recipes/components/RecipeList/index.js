@@ -22,7 +22,7 @@ const RecipeList = ({ recipes }) => {
   };
 
   const recipeList = recipes.map((recipe) => (
-    <Grid key={recipe.id} item xs={2} sm={3} md={4}>
+    <Grid key={recipe.id} item xs={2} md={3} lg={4} xl={5}>
       <RecipeCard
         id={recipe.id}
         title={recipe.title}
@@ -37,12 +37,12 @@ const RecipeList = ({ recipes }) => {
 
   return (
     <>
-      {recipes.length === 0 ? (
+      {recipeList.length === 0 ? (
         <Loading />
       ) : (
         <Grid
           container
-          columns={{ xs: 4, sm: 9, md: 16 }}
+          columns={{ xs: 4, md: 9, lg: 16, xl: 25 }}
           spacing={2}
           sx={{ p: 2 }}
         >

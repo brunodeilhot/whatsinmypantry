@@ -2,8 +2,7 @@ import { SearchRounded } from "@mui/icons-material";
 import { InputAdornment, TextField } from "@mui/material";
 import { Box, styled } from "@mui/system";
 
-const SearchBar = ({ handleChange, value }) => {
-
+const SearchBar = ({ handleChange, value, searchBarRef }) => {
   const SearchIgredientsInput = styled(TextField)({
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
@@ -28,6 +27,7 @@ const SearchBar = ({ handleChange, value }) => {
       }}
     >
       <SearchIgredientsInput
+        ref={searchBarRef}
         autoFocus
         value={value}
         onChange={handleChange}
@@ -43,7 +43,7 @@ const SearchBar = ({ handleChange, value }) => {
         sx={{
           minWidth: "80%",
           borderRadius: "30px",
-          backgroundColor: "secondary.main"
+          backgroundColor: "secondary.main",
         }}
       />
     </Box>

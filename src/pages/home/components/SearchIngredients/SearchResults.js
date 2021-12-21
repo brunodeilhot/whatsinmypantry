@@ -14,7 +14,7 @@ import {
 import { Box } from "@mui/system";
 import { imageBaseURL } from "../../../../services";
 
-const SearchResults = ({ ingredients, addIngredient, resetValue, pantry }) => {
+const SearchResults = ({ ingredients, addIngredient, resetValue, pantry, searchBarWidth }) => {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <ClickAwayListener onClickAway={resetValue}>
@@ -24,7 +24,7 @@ const SearchResults = ({ ingredients, addIngredient, resetValue, pantry }) => {
             display: "flex",
             flexDirection: "column",
             position: "fixed !important",
-            minWidth: "80%",
+            width: searchBarWidth,
             border: "3px solid #7FD7C3",
             borderRadius: "30px",
             backgroundColor: "secondary.main",
