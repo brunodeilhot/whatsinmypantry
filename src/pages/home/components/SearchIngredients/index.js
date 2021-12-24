@@ -8,24 +8,7 @@ import { useDebounce } from "use-debounce/lib";
 const SearchIngredients = () => {
   const dispatch = useDispatch();
   const pantry = useSelector((state) => state.myPantry);
-
-  // State and function that controls the width of the search results
-  // Width of search results is always the same as the search bar
   const searchBarRef = useRef();
-  const [searchBarWidth, setWidth] = useState();
-
-  const getSearchBarWidth = () => {
-    const widthRef = searchBarRef.current;
-    if (widthRef === null) {
-      return;
-    }
-    setWidth(widthRef.clientWidth);
-  };
-
-  useEffect(() => {
-    getSearchBarWidth();
-    window.addEventListener("resize", getSearchBarWidth);
-  }, []);
 
   // State and functions that manage the values received on the search input
   // The debounced value is used to fetch a list of ingredients
@@ -83,7 +66,7 @@ const SearchIngredients = () => {
       />
       {ingredientResults.length > 0 ? (
         <SearchResults
-          searchBarWidth={searchBarWidth}
+          widthRef={searchBarRef}
           ingredients={ingredientResults}
           addIngredient={addIngredient}
           resetValue={resetValue}

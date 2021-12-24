@@ -13,8 +13,12 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { imageBaseURL } from "../../../../services";
+import { useParentWidth } from "../../../../Utils";
 
-const SearchResults = ({ ingredients, addIngredient, resetValue, pantry, searchBarWidth }) => {
+const SearchResults = ({ ingredients, addIngredient, resetValue, pantry, widthRef }) => {
+
+  const searchBarWidth = useParentWidth(widthRef);
+
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <ClickAwayListener onClickAway={resetValue}>
