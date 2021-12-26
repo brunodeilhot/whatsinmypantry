@@ -28,18 +28,40 @@ export function searchIngredients(value, success) {
     .then(success);
 }
 
-export function searchRecByIng(value, offset, number, success) {
+export function searchRecByIng(value, type, diet, number, success) {
+
+  const params = {
+    ...apiKey,
+    includeIngredients: value,
+    sort: "min-missing-ingredients",
+    sortDirection: "asc",
+    number: number,
+  }
+
+  const filteredParams = () => {
+        if (type !== undefined && diet !== undefined) {
+          return {
+            ...params,
+            type: type,
+            diet: diet
+          }
+        } else if (type !== undefined) {
+          return {
+            ...params,
+            type: type
+          }
+        } else if (diet !== undefined) {
+          return {
+            ...params,
+            diet: diet
+          }
+        }
+        return {...params}
+      }
+
   return api
     .get("/recipes/complexSearch", {
-      params: {
-        ...apiKey,
-        includeIngredients: value,
-        sort: "min-missing-ingredients",
-        sortDirection: "asc",
-        offset: offset,
-        // type: "breakfast",
-        number: number,
-      },
+      params: filteredParams()
     })
     .catch((error) => apiLimit(error))
     .then(parseJsonResults)

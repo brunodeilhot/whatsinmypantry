@@ -5,14 +5,18 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { searchRecByIng } from "../../services";
 import NoRecipes from "./components/NoRecipes";
 import RecipeList from "./components/RecipeList";
+import Filters from "./components/Filters";
 
 const Recipes = () => {
   const dispatch = useDispatch();
 
   const pantryState = useSelector((state) => state.myPantry);
+
   const [recipes, setRecipes] = useState([]);
   const [totalRecipes, setTotalRecipes] = useState(20);
-  const [offset, setOffset] = useState(0);
+  const [recipeLimit, setRecipeLimit] = useState(false);
+  const [mealType, setMealType] = useState();
+  const [diet, setDiet] = useState();
 
   const testRecipes = [
     {
@@ -54,21 +58,40 @@ const Recipes = () => {
   ];
 
   const addRecipesScroll = () => {
-    if (totalRecipes === 100) {
+    if (totalRecipes === 100 || recipeLimit === true) {
       return
     }
     setTotalRecipes(totalRecipes + 20);
+  };
+
+  const handleFilterChange = (e, name) => {
+    if (name === "meal type") {
+      return mealType === e.target.value
+        ? setMealType(undefined)
+        : setMealType(e.target.value);
+    } else if (name === "dietary options") {
+      return diet === e.target.value
+        ? setDiet(undefined)
+        : setDiet(e.target.value);
+    }
   };
 
   useEffect(() => {
     if (pantryState.length > 0) {
       searchRecByIng(
         pantryState.toString(),
-        offset.toString(),
+        mealType,
+        diet,
         totalRecipes.toString(),
         (searchResults) => {
           if (searchResults === 402) {
             return dispatch({ type: "API_LIMIT", payload: true });
+          }
+          if (searchResults.length % 20 !== 0) {
+            setRecipeLimit(true);
+          }
+          if (searchResults.length % 20 === 0) {
+            setRecipeLimit(false);
           }
           dispatch({ type: "API_LIMIT", payload: false });
           setRecipes(searchResults);
@@ -79,13 +102,15 @@ const Recipes = () => {
     // if (testRecipes.length > 0) {
     //   setRecipes(testRecipes);
     // }
-  }, [pantryState, offset, totalRecipes, dispatch]);
+  }, [pantryState, totalRecipes, dispatch, mealType, diet]);
 
   return (
     <>
       {pantryState.length === 0 ? (
         <NoRecipes />
       ) : (
+        <>
+        <Filters handleFilterChange={handleFilterChange} mealType={mealType} diet={diet}/>
         <InfiniteScroll
           dataLength={recipes}
           next={addRecipesScroll}
@@ -93,8 +118,8 @@ const Recipes = () => {
         >
           <RecipeList recipes={recipes} />
         </InfiniteScroll>
+        </>
       )}
-
       <Outlet />
     </>
   );
