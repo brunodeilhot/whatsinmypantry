@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import Logo from "../assets/Logo.svg";
+import SadLogo from "../assets/SadLogo.svg";
 
 const ErrorPage = ({ apiLimit }) => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const ErrorPage = ({ apiLimit }) => {
         <Box
           component="img"
           sx={{ width: 170, height: 106, mt: 6, mb: 3 }}
-          src={Logo}
+          src={SadLogo}
           alt="Large whatsinmypantry smiling taco logo"
         />
         <Typography component="p" variant="h4" color="text.primary">
