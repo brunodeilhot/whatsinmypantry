@@ -59,7 +59,7 @@ const Recipes = () => {
 
   const addRecipesScroll = () => {
     if (totalRecipes === 100 || recipeLimit === true) {
-      return
+      return;
     }
     setTotalRecipes(totalRecipes + 20);
   };
@@ -104,20 +104,31 @@ const Recipes = () => {
     // }
   }, [pantryState, totalRecipes, dispatch, mealType, diet]);
 
+  const filteredRecipes =
+    recipes.length === 0 && (mealType !== undefined || diet !== undefined) ? (
+      <NoRecipes filtered={true} />
+    ) : (
+      <InfiniteScroll
+        dataLength={recipes}
+        next={addRecipesScroll}
+        hasMore={true}
+      >
+        <RecipeList recipes={recipes} />
+      </InfiniteScroll>
+    );
+
   return (
     <>
       {pantryState.length === 0 ? (
         <NoRecipes />
       ) : (
         <>
-        <Filters handleFilterChange={handleFilterChange} mealType={mealType} diet={diet}/>
-        <InfiniteScroll
-          dataLength={recipes}
-          next={addRecipesScroll}
-          hasMore={true}
-        >
-          <RecipeList recipes={recipes} />
-        </InfiniteScroll>
+          <Filters
+            handleFilterChange={handleFilterChange}
+            mealType={mealType}
+            diet={diet}
+          />
+          {filteredRecipes}
         </>
       )}
       <Outlet />
