@@ -9,6 +9,7 @@ import Instructions from "./Instructions";
 import Footer from "./Footer";
 import Loading from "../../../../components/Loading";
 import { useDispatch } from "react-redux";
+import ErrorPage from "../../../../components/ErrorPage";
 
 const RecipeDetails = ({ desktop }) => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const RecipeDetails = ({ desktop }) => {
 
   const [open, setOpen] = useState(true);
   const [recipeDetails, setRecipeDetails] = useState([]);
+  const [noResults, setNoResults] = useState(false);
 
   const {
     image,
@@ -57,11 +59,17 @@ const RecipeDetails = ({ desktop }) => {
         return dispatch({ type: "API_LIMIT", payload: true });
       }
       dispatch({ type: "API_LIMIT", payload: false });
+
+      if (searchResults === undefined) {
+        return setNoResults(true);
+      }
+      setNoResults(false);
+
       setRecipeDetails(searchResults);
     });
   }, [dispatch, id]);
 
-  const details = (
+  const details = recipeDetails.length === 0 ? <Loading /> : (
     <Grid container>
       <Grid container item>
         <Header handleTransition={handleTransition} image={image} />
@@ -103,7 +111,7 @@ const RecipeDetails = ({ desktop }) => {
       fullScreen={!desktop}
       hideBackdrop={!desktop}
     >
-      {recipeDetails.length === 0 ? <Loading /> : details}
+      {noResults ? <ErrorPage /> : details}
     </Dialog>
   );
 };

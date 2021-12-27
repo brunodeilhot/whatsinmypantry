@@ -87,6 +87,9 @@ function parseJsonResults(response) {
 }
 
 function parseJsonData(response) {
+  if (response === undefined) {
+    return response
+  }
   console.log(response.data);
   return response.data;
 }
