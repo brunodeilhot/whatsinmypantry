@@ -6,8 +6,9 @@ import { searchRecByIng } from "../../services";
 import NoRecipes from "./components/NoRecipes";
 import RecipeList from "./components/RecipeList";
 import Filters from "./components/Filters";
+import ScrollTop from "../../components/ScrollTop";
 
-const Recipes = () => {
+const Recipes = ({ desktop }) => {
   const dispatch = useDispatch();
 
   const pantryState = useSelector((state) => state.myPantry);
@@ -113,7 +114,7 @@ const Recipes = () => {
         next={addRecipesScroll}
         hasMore={true}
       >
-        <RecipeList recipes={recipes} />
+        <RecipeList recipes={recipes} mobileList={!desktop} />
       </InfiniteScroll>
     );
 

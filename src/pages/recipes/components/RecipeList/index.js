@@ -2,8 +2,9 @@ import RecipeCard from "./RecipeCard";
 import { Grid } from "@mui/material";
 import Loading from "../../../../components/Loading";
 import { useDispatch, useSelector } from "react-redux";
+import ScrollTop from "../../../../components/ScrollTop";
 
-const RecipeList = ({ recipes }) => {
+const RecipeList = ({ recipes, mobileList }) => {
   const dispatch = useDispatch();
 
   const starredRecipes = useSelector((state) => state.starredRecipes);
@@ -44,6 +45,7 @@ const RecipeList = ({ recipes }) => {
           sx={{ p: 2 }}
         >
           {recipeList}
+          <ScrollTop mobileList={mobileList} />
         </Grid>
       )}
     </>

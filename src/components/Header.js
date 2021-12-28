@@ -18,7 +18,7 @@ const Header = ({ desktop, desktopLg }) => {
           {desktop ? <MainNavList desktop={desktop} desktopLg={desktopLg} /> : <MainNavMobile />}
         </Toolbar>
       </AppBar>
-      <Toolbar />
+      <Toolbar id="back-to-top-anchor" />
     </>
   );
 };

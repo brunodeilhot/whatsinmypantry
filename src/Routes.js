@@ -16,10 +16,10 @@ const MainRoutes = () => {
     <Routes>
       <Route path="/" element={<App desktop={desktop} desktopLg={desktopLg} />}>
         {!desktop && <Route index element={<Home desktop={desktop} />} />}
-        <Route path="recipes" element={<Recipes />}>
+        <Route path="recipes" element={<Recipes desktop={desktop} />}>
           <Route path=":id" element={<RecipeDetails desktop={desktop} />} />
         </Route>
-        <Route path="starred" element={<Starred />}>
+        <Route path="starred" element={<Starred desktop={desktop} />}>
           <Route path=":id" element={<RecipeDetails desktop={desktop} />} />
         </Route>
       </Route>
