@@ -2,8 +2,8 @@ import { CloseRounded, MenuRounded } from "@mui/icons-material";
 import { Drawer, IconButton } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
-import MainNavList from "../MainNavList";
-import About from "./About";
+import MainNavList from "./MainNavList";
+import About from "../About";
 
 const MainNavMobile = () => {
   const [navState, setNavState] = useState(false);

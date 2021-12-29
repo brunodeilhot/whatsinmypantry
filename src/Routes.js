@@ -6,6 +6,7 @@ import Recipes from "./pages/recipes/Recipes";
 import Starred from "./pages/starred/Starred";
 import RecipeDetails from "./pages/recipes/components/RecipeDetails";
 import ErrorPage from "./components/ErrorPage";
+import About from "./components/About";
 
 const MainRoutes = () => {
 
@@ -22,6 +23,7 @@ const MainRoutes = () => {
         <Route path="starred" element={<Starred desktop={desktop} />}>
           <Route path=":id" element={<RecipeDetails desktop={desktop} />} />
         </Route>
+        {desktop && <Route path="about" element={<About desktop={desktop} />} />}
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
