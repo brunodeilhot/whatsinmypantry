@@ -1,3 +1,4 @@
+import { CopyrightRounded } from "@mui/icons-material";
 import { Grid, Link, Typography } from "@mui/material";
 
 const Footer = ({ sourceName, sourceUrl }) => {
@@ -6,10 +7,13 @@ const Footer = ({ sourceName, sourceUrl }) => {
       <Typography
         variant="body1"
         component="p"
+        display="flex"
+        alignItems="center"
         sx={{ color: "text.secondary" }}
       >
-        COPYRIGHT © Recipe by{" "}
-        <Link href={sourceUrl} underline="none">
+        COPYRIGHT <CopyrightRounded fontSize="small" sx={{ marginX: 0.5 }} />
+        Recipe by
+        <Link href={sourceUrl} underline="none" sx={{ ml: 0.5 }}>
           {sourceName}
         </Link>
       </Typography>

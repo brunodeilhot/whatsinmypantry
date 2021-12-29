@@ -1,10 +1,11 @@
 import { CopyrightRounded, GitHub, LinkedIn } from "@mui/icons-material";
-import { Grid, IconButton, Typography } from "@mui/material";
+import { Grid, IconButton, Link, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Logo from "../assets/Logo.svg";
 
 const About = ({ desktop }) => {
   const fontColor = desktop ? "text.primary" : "secondary.main";
+  const iconColor = desktop ? "primary" : "secondary";
 
   return (
     <Box sx={{ m: 2.5, color: fontColor }}>
@@ -27,7 +28,15 @@ const About = ({ desktop }) => {
         home.
       </Typography>
       <Typography variant="body2" component="p">
-        This app was created as a FrontEnd project for an academic course.
+        This app was created as a FrontEnd project for an academic course and is
+        powered by{" "}
+        <Link
+          href="https://spoonacular.com/food-api"
+          underline="none"
+          color={iconColor}
+        >
+          Spoonacular API.
+        </Link>
       </Typography>
       <Box component="footer" mt={4}>
         <Grid container>
@@ -35,10 +44,10 @@ const About = ({ desktop }) => {
             href="https://www.linkedin.com/in/brunodeilhot/"
             target="_blank"
           >
-            <LinkedIn fontSize="large" />
+            <LinkedIn color={iconColor} fontSize="large" />
           </IconButton>
           <IconButton href="https://github.com/brunodeilhot" target="_blank">
-            <GitHub sx={{ fontSize: 35 }} />
+            <GitHub color={iconColor} sx={{ fontSize: 35 }} />
           </IconButton>
         </Grid>
         <Typography

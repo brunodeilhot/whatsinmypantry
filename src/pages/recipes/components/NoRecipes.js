@@ -18,7 +18,7 @@ const NoRecipes = ({ starred, filtered }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mt: "30vh",
+          mt: "25vh",
         }}
       >
         {starred ? (
