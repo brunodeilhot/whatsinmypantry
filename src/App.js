@@ -1,4 +1,4 @@
-import { Drawer, ThemeProvider, Toolbar } from "@mui/material";
+import { CssBaseline, Drawer, ThemeProvider, Toolbar } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
@@ -22,9 +22,11 @@ const App = ({ desktop, desktopLg }) => {
   }, [desktop, matchRoute, navigate]);
 
   const bodyRef = useRef();
-  const bodyWidth =  useParentWidth(bodyRef);
+  const bodyWidth = useParentWidth(bodyRef);
 
-  const drawerWidth = desktopLg ? (bodyWidth * 0.3).toString() + "px" : (bodyWidth * 0.4).toString() + "px";
+  const drawerWidth = desktopLg
+    ? (bodyWidth * 0.3).toString() + "px"
+    : (bodyWidth * 0.4).toString() + "px";
 
   const PermanentDrawer = styled(Drawer)({
     "& .MuiDrawer-docked": {
@@ -48,7 +50,8 @@ const App = ({ desktop, desktopLg }) => {
 
   return (
     <ThemeProvider theme={responsiveTheme}>
-      <Box ref={bodyRef} minHeight="100vh" backgroundColor="background.default">
+      <CssBaseline />
+      <Box ref={bodyRef} minHeight="100vh" backgroundColor="background.default" overflowY="auto">
         <Header desktop={desktop} desktopLg={desktopLg} />
         {desktop && (
           <PermanentDrawer variant="permanent">
