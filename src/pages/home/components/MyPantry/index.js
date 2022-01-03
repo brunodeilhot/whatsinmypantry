@@ -1,5 +1,4 @@
 import { Fade, Grid } from "@mui/material";
-import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { TransitionGroup } from "react-transition-group";
 import EmptyPantry from "./EmptyPantry";
@@ -11,7 +10,8 @@ const MyPantry = () => {
   const ingredients = useSelector((state) => state.myPantry);
 
   function removeIngredient(e, ingredient) {
-    dispatch({ type: "REMOVE_INGREDIENT", payload: ingredient });
+    const ingIndex = ingredients.indexOf(ingredient);
+    dispatch({ type: "REMOVE_INGREDIENT", payload: ingIndex });
   }
 
   const ingredientList = ingredients.map((ingredient) => (
@@ -26,15 +26,15 @@ const MyPantry = () => {
   ));
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+    <Grid container justifyContent="center" mb={2}>
       {ingredients.length === 0 ? (
         <EmptyPantry />
       ) : (
-        <Grid container spacing={1} sx={{ maxWidth: "80%", mt: 5 }}>
+        <Grid container item spacing={1} maxWidth="80%">
           <TransitionGroup component={null}>{ingredientList}</TransitionGroup>
         </Grid>
       )}
-    </Box>
+    </Grid>
   );
 };
 

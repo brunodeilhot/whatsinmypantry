@@ -9,6 +9,7 @@ const ErrorPage = ({ apiLimit }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // error page displays for 5 seconds then redirects back to the home page
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/");
@@ -22,7 +23,10 @@ const ErrorPage = ({ apiLimit }) => {
       <Grid container item flexDirection="column" alignItems="center" p={2.5}>
         <Box
           component="img"
-          sx={{ width: 170, height: 106, mt: 6, mb: 3 }}
+          width={170}
+          height={106}
+          mt={6}
+          mb={3}
           src={SadLogo}
           alt="Large whatsinmypantry smiling taco logo"
         />

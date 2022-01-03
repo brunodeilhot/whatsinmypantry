@@ -4,28 +4,31 @@ import Logo from "../../../../assets/Logo.svg";
 
 const Instructions = ({ analyzedInstructions }) => {
   const instructions = analyzedInstructions.map((item) => {
+    // Visual representation of each step in a group of steps
     const listSteps = item.steps.map((step) => (
       <ListItem key={step.number} disablePadding>
         <ListItemText
           primary={
             <>
-              <Typography fontWeight={700} sx={{ display: "inline" }}>
+              <Typography fontWeight={700} display="inline">
                 {step.number}
                 {". "}
               </Typography>
-              <Typography sx={{ display: "inline" }}> {step.step}</Typography>
+              <Typography display="inline">{step.step}</Typography>
             </>
           }
         />
       </ListItem>
     ));
 
+    // Recipes can have multiple groups of steps, the main group always returns
+    // an empty string as the name
     return item.name === "" ? (
       <List dense key={"main list"}>
         {listSteps}
       </List>
     ) : (
-      <Grid item key={item.name}>
+      <Grid container item key={item.name}>
         <Typography
           variant="h6"
           component="h3"

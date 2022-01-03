@@ -11,8 +11,12 @@ import ErrorPage from "./components/ErrorPage";
 import Home from "./pages/home/Home";
 
 const App = ({ desktop, desktopLg }) => {
-  const apiLimit = useSelector((state) => state.apiLimitReached);
   const navigate = useNavigate();
+  const apiLimit = useSelector((state) => state.apiLimitReached);
+
+  // Home page (ingredient search) is only present as a standalone
+  // in the mobile version, for desktop the user is redirected to
+  // the recipes page
   const matchRoute = useMatch("/");
 
   useEffect(() => {
@@ -21,6 +25,9 @@ const App = ({ desktop, desktopLg }) => {
     }
   }, [desktop, matchRoute, navigate]);
 
+  // For the desktop version the home page is presented as a permanent
+  // left positioned drawer and its width is rendered dynamically
+  // based on the referenced width of the body
   const bodyRef = useRef();
   const bodyWidth = useParentWidth(bodyRef);
 
@@ -51,7 +58,7 @@ const App = ({ desktop, desktopLg }) => {
   return (
     <ThemeProvider theme={responsiveTheme}>
       <CssBaseline />
-      <Box ref={bodyRef} minHeight="100vh" backgroundColor="background.default" overflowY="auto">
+      <Box ref={bodyRef} minHeight="100vh" backgroundColor="background.default">
         <Header desktop={desktop} desktopLg={desktopLg} />
         {desktop && (
           <PermanentDrawer variant="permanent">

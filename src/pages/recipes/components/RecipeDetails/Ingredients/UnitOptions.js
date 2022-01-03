@@ -2,21 +2,23 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { styled } from "@mui/system";
 
 const UnitOptions = ({ handleUnitChange, unit }) => {
-  const items = [
+  const measureOptions = [
     { name: "us", aria: "us units" },
     { name: "metric", aria: "metric units" },
   ];
 
-  const CustomToggleBtGroup = styled(ToggleButtonGroup)({
+  // Customized toggle button group for measure options
+  const MeasureToggleBtGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     "& .MuiToggleButtonGroup-grouped": {
-      border: "2px solid #7FD7C3",
+      border: "2px solid",
+      borderColor: theme.palette.primary.main,
       borderRadius: "30px",
       padding: "4px 10px",
     },
-  });
+  }));
 
   return (
-    <CustomToggleBtGroup
+    <MeasureToggleBtGroup
       value={unit}
       exclusive
       onChange={handleUnitChange}
@@ -24,7 +26,7 @@ const UnitOptions = ({ handleUnitChange, unit }) => {
       color="primary"
       size="small"
     >
-      {items.map((item) => (
+      {measureOptions.map((item) => (
         <ToggleButton
           key={item.name}
           value={item.name}
@@ -34,7 +36,7 @@ const UnitOptions = ({ handleUnitChange, unit }) => {
           {item.name}
         </ToggleButton>
       ))}
-    </CustomToggleBtGroup>
+    </MeasureToggleBtGroup>
   );
 };
 

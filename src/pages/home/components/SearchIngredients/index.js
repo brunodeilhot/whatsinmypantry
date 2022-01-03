@@ -12,25 +12,21 @@ const SearchIngredients = () => {
 
   // State and functions that manage the values received on the search input
   // The debounced value is used to fetch a list of ingredients
-  // Ingredients fetched state is then forwarded to the search results component
+  // Ingredient's fetched state is then forwarded to the search results component
   // When ingredient is added it is dispatched to the redux store
+
+  // States that manage the user input of the ingredient search bar
   const [value, setValue] = useState("");
   const [debouncedValue] = useDebounce(value, 500);
-  const [ingredientResults, setIngredientResults] = useState([]);
 
   const handleChange = (e) => setValue(e.target.value);
 
-  function addIngredient(e, ingredient) {
-    if (pantry.indexOf(ingredient) !== -1) {
-      return dispatch({ type: "REMOVE_INGREDIENT", payload: ingredient });
-    }
-    dispatch({ type: "ADD_INGREDIENT", payload: ingredient });
-  }
+  // State that manages the list of ingredients obtained from the api
+  const [ingredientResults, setIngredientResults] = useState([]);
 
-  function resetValue() {
-    setValue("");
-  }
-
+  // When debounced value of the input changes, a list of resuslts is
+  // called from the api, if the response is 402 then api limit was
+  // reached and an error page is displayed
   useEffect(() => {
     if (debouncedValue.length >= 3) {
       searchIngredients(debouncedValue, (searchResults) => {
@@ -41,21 +37,21 @@ const SearchIngredients = () => {
       });
     }
 
-    // const testIngredients = [
-    //   { id: 1, name: "tomato", image: "" },
-    //   { id: 2, name: "banana", image: "" },
-    //   { id: 3, name: "lettuce", image: "" },
-    //   { id: 4, name: "broccoli", image: "" },
-    //   { id: 5, name: "apple", image: "" },
-    //   { id: 6, name: "apple sauce", image: "" },
-    //   { id: 7, name: "tomato sauce", image: "" },
-    //   { id: 8, name: "kiwi", image: "" },
-    // ];
-    // if (value.length >= 3) {
-    //   return setIngredientResults(testIngredients);
-    // }
     setIngredientResults([]);
   }, [debouncedValue, dispatch]);
+
+  // This function is called on the search results when the user adds or removes
+  // an ingredient and then updates the global store myPantry
+  function ingredientToggle(e, ingredient) {
+    if (pantry.indexOf(ingredient) !== -1) {
+      return dispatch({ type: "REMOVE_INGREDIENT", payload: ingredient });
+    }
+    dispatch({ type: "ADD_INGREDIENT", payload: ingredient });
+  }
+
+  function resetValue() {
+    setValue("");
+  }
 
   return (
     <>
@@ -68,7 +64,7 @@ const SearchIngredients = () => {
         <SearchResults
           widthRef={searchBarRef}
           ingredients={ingredientResults}
-          addIngredient={addIngredient}
+          ingredientToggle={ingredientToggle}
           resetValue={resetValue}
           pantry={pantry}
         />

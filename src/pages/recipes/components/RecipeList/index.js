@@ -1,14 +1,15 @@
-import RecipeCard from "./RecipeCard";
-import { Grid } from "@mui/material";
-import Loading from "../../../../components/Loading";
 import { useDispatch, useSelector } from "react-redux";
+import { Grid } from "@mui/material";
+import RecipeCard from "./RecipeCard";
+import Loading from "../../../../components/Loading";
 import ScrollTop from "../../../../components/ScrollTop";
 
 const RecipeList = ({ recipes, mobileList }) => {
   const dispatch = useDispatch();
-
   const starredRecipes = useSelector((state) => state.starredRecipes);
 
+  // Function that controls when a user adds or removes a starred recipe
+  // Starred recipes ids are stored globally and in local storage
   const toggleStarred = (e, starred) => {
     const checkIndex = starredRecipes.findIndex(
       (recipe) => recipe.id === starred.id
@@ -21,7 +22,7 @@ const RecipeList = ({ recipes, mobileList }) => {
   };
 
   const recipeList = recipes.map((recipe) => (
-    <Grid key={recipe.id} item xs={2} md={3} lg={4} xl={5}>
+    <Grid key={recipe.id} container item xs={2} md={3} lg={4} xl={5}>
       <RecipeCard
         id={recipe.id}
         title={recipe.title}
@@ -42,7 +43,7 @@ const RecipeList = ({ recipes, mobileList }) => {
           container
           columns={{ xs: 4, md: 9, lg: 16, xl: 25 }}
           spacing={2}
-          sx={{ p: 2 }}
+          p={2}
         >
           {recipeList}
           <ScrollTop mobileList={mobileList} />

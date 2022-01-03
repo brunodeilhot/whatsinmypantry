@@ -4,9 +4,6 @@ const theme = createTheme({
   typography: {
     button: {
       textTransform: "none",
-      "&:hover": {
-        backgroundColor: "none",
-      },
     },
   },
   palette: {
@@ -31,7 +28,6 @@ const theme = createTheme({
       defaultProps: {
         disableRipple: true,
         disableTouchRipple: true,
-        focusRipple: true,
       },
     },
     MuiIconButton: {

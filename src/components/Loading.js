@@ -1,17 +1,12 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 
-
-const Loading = () => {
-
-    return (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Box sx={{ m: "30vh" }}>
-                <CircularProgress size={100} color="primary" />
-            </Box>
-        </Box>
-        
-    )
-};
+const Loading = () => (
+  <Grid container justifyContent="center">
+    <Box m="25vh">
+      <CircularProgress size={100} color="primary" />
+    </Box>
+  </Grid>
+);
 
 export default Loading;

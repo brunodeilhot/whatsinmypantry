@@ -3,30 +3,40 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { styled } from "@mui/system";
 
 const Servings = ({ serving, handleServing, addServing, removeServing }) => {
-  const ServingsInput = styled(TextField)({
-    "& .MuiOutlinedInput-root": {
-      width: "100px",
-      "& input": {
-        padding: "5px 0",
-        textAlign: "center"
+  // Customized input field
+  const ServingsInput = styled(TextField)(({ theme }) => {
+    const themeColor = theme.palette.primary.main;
+    return {
+      "& .MuiOutlinedInput-root": {
+        width: "100px",
+        "& input": {
+          padding: "5px 0",
+          textAlign: "center",
+        },
+        "& fieldset": {
+          borderWidth: "2px",
+          borderRadius: "30px",
+          borderColor: themeColor,
+        },
+        "&:hover fieldset": {
+          borderColor: themeColor,
+        },
       },
-      "& fieldset": {
-        borderWidth: "2px",
-        borderRadius: "30px",
-        borderColor: "#7FD7C3",
+      "& .MuiInputLabel-root": {
+        color: themeColor,
       },
-      "&:hover fieldset": {
-        borderColor: "#7FD7C3",
-      },
-    },
-    "& .MuiInputLabel-root": {
-      color: "#7FD7C3"
-    }
+    };
   });
 
   const addBt = (
     <InputAdornment position="end">
-      <IconButton id="add" aria-label="add serving" edge="end" sx={{ p: 0 }} onClick={addServing}>
+      <IconButton
+        id="add"
+        aria-label="add serving"
+        edge="end"
+        sx={{ p: 0 }}
+        onClick={addServing}
+      >
         <AddRounded color="primary" />
       </IconButton>
     </InputAdornment>
@@ -34,7 +44,13 @@ const Servings = ({ serving, handleServing, addServing, removeServing }) => {
 
   const removeBt = (
     <InputAdornment position="start">
-      <IconButton id="remove" aria-label="remove serving" edge="start"  sx={{ p: 0 }} onClick={removeServing}>
+      <IconButton
+        id="remove"
+        aria-label="remove serving"
+        edge="start"
+        sx={{ p: 0 }}
+        onClick={removeServing}
+      >
         <RemoveRounded color="primary" />
       </IconButton>
     </InputAdornment>

@@ -1,40 +1,29 @@
 import { MenuBookRounded, StarRateRounded } from "@mui/icons-material";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Grid, Typography } from "@mui/material";
 
 const NoRecipes = ({ starred, filtered }) => {
   const iconOptions = { fontSize: "20vh", color: "text.secondary", mb: 1 };
 
-  const filteredMessage = filtered
+  const message = filtered
     ? "Try changing your filter options."
     : "Add some ingredients to your pantry.";
 
   return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", alignContent: "center" }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          mt: "25vh",
-        }}
-      >
+    <Grid container justifyContent="center" alignContent="center">
+      <Grid container flexDirection="column" alignItems="center" mt="25vh">
         {starred ? (
           <StarRateRounded sx={iconOptions} />
         ) : (
           <MenuBookRounded sx={iconOptions} />
         )}
-
         <Typography component="p" variant="h4" color="text.secondary">
           No recipes found.
         </Typography>
         <Typography component="p" variant="body1" color="text.secondary">
-          {starred ? "Star your favorite recipes." : filteredMessage}
+          {starred ? "Star your favorite recipes." : message}
         </Typography>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
 };
 

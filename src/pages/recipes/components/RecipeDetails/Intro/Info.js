@@ -28,17 +28,17 @@ const Info = ({ readyInMinutes, healthScore }) => {
           item
           alignItems="center"
           wrap="nowrap"
-          sx={{ width: "fit-content" }}
+          width="fit-content"
         >
           {item.icon}
-            <Typography
-              variant="body2"
-              fontWeight={700}
-              pl={0.5}
-              sx={{ color: item.color }}
-            >
-              {item.text}
-            </Typography>
+          <Typography
+            variant="body2"
+            fontWeight={700}
+            pl={0.5}
+            sx={{ color: item.color }}
+          >
+            {item.text}
+          </Typography>
         </Grid>
       ))}
     </Grid>

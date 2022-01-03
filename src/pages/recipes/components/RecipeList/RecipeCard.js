@@ -19,9 +19,11 @@ const RecipeCard = ({
   toggleStarred,
   starredRecipes,
 }) => {
+  // Defines the position of the recipe card icons
   const iconPosition =
     missingIng === undefined || 0 ? "flex-end" : "space-between";
 
+  // Data that is stored when a recipe is starred
   const starredData = {
     id: id,
     title: title,
@@ -51,7 +53,7 @@ const RecipeCard = ({
       >
         <CardMedia component="img" image={image} height="100%" alt={title} />
         <CardContent sx={{ p: 1, pb: 0 }}>
-          <Typography component="h2" variant="body2" fontWeight="700">
+          <Typography component="h2" variant="body2" fontWeight={700}>
             {title}
           </Typography>
         </CardContent>

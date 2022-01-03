@@ -6,57 +6,31 @@ import { searchRecByIng } from "../../services";
 import NoRecipes from "./components/NoRecipes";
 import RecipeList from "./components/RecipeList";
 import Filters from "./components/Filters";
-import ScrollTop from "../../components/ScrollTop";
 
 const Recipes = ({ desktop }) => {
   const dispatch = useDispatch();
-
   const pantryState = useSelector((state) => state.myPantry);
 
-  const [recipes, setRecipes] = useState([]);
-  const [totalRecipes, setTotalRecipes] = useState(20);
-  const [recipeLimit, setRecipeLimit] = useState(false);
+  // Management of filter options in the recipe list
   const [mealType, setMealType] = useState();
   const [diet, setDiet] = useState();
 
-  const testRecipes = [
-    {
-      id: 643514,
-      usedIngredientCount: 1,
-      missedIngredientCount: 6,
-      likes: 0,
-      title: "Fresh Herb Omelette",
-      image: "https://spoonacular.com/recipeImages/643514-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 633595,
-      usedIngredientCount: 1,
-      missedIngredientCount: 7,
-      likes: 0,
-      title: "Baked Eggs With Asparagus and Sun Dried Tomatoes",
-      image: "https://spoonacular.com/recipeImages/633595-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 659604,
-      usedIngredientCount: 1,
-      missedIngredientCount: 8,
-      likes: 0,
-      title: "Scrambled tofu with rocket",
-      image: "https://spoonacular.com/recipeImages/659604-312x231.jpg",
-      imageType: "jpg",
-    },
-    {
-      id: 656481,
-      usedIngredientCount: 1,
-      missedIngredientCount: 8,
-      likes: 0,
-      title: "Poached Egg With Spinach and Tomato",
-      image: "https://spoonacular.com/recipeImages/656481-312x231.jpg",
-      imageType: "jpg",
-    },
-  ];
+  const handleFilterChange = (e, option) => {
+    if (option === "meal type") {
+      return mealType === e.target.value
+        ? setMealType(undefined)
+        : setMealType(e.target.value);
+    } else if (option === "dietary options") {
+      return diet === e.target.value
+        ? setDiet(undefined)
+        : setDiet(e.target.value);
+    }
+  };
+
+  // Management of recipe list limit, recipes are loaded by scrolling
+  // in blocks of 20 up to a maximum of 100
+  const [totalRecipes, setTotalRecipes] = useState(20);
+  const [recipeLimit, setRecipeLimit] = useState(false);
 
   const addRecipesScroll = () => {
     if (totalRecipes === 100 || recipeLimit === true) {
@@ -65,17 +39,13 @@ const Recipes = ({ desktop }) => {
     setTotalRecipes(totalRecipes + 20);
   };
 
-  const handleFilterChange = (e, name) => {
-    if (name === "meal type") {
-      return mealType === e.target.value
-        ? setMealType(undefined)
-        : setMealType(e.target.value);
-    } else if (name === "dietary options") {
-      return diet === e.target.value
-        ? setDiet(undefined)
-        : setDiet(e.target.value);
-    }
-  };
+  // - Api is called for a new list of recipes based on state changes
+  // in the pantry(ingredient list), number of total recipes to be
+  // loaded(scrolling the page), or changes in the filters
+  // - If the number of results is less then the total recipes to be
+  // loaded then recipe limit is set to true
+
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     if (pantryState.length > 0) {
@@ -99,12 +69,10 @@ const Recipes = ({ desktop }) => {
         }
       );
     }
-
-    // if (testRecipes.length > 0) {
-    //   setRecipes(testRecipes);
-    // }
   }, [pantryState, totalRecipes, dispatch, mealType, diet]);
 
+  // If the filters chosen by the user returns no results then
+  // a message is shown that there are no recipes available
   const filteredRecipes =
     recipes.length === 0 && (mealType !== undefined || diet !== undefined) ? (
       <NoRecipes filtered={true} />
@@ -112,7 +80,7 @@ const Recipes = ({ desktop }) => {
       <InfiniteScroll
         dataLength={recipes}
         next={addRecipesScroll}
-        hasMore={true}
+        hasMore={!recipeLimit}
       >
         <RecipeList recipes={recipes} mobileList={!desktop} />
       </InfiniteScroll>

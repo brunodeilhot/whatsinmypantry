@@ -1,14 +1,16 @@
 import { CloseRounded, MenuRounded } from "@mui/icons-material";
-import { Drawer, IconButton } from "@mui/material";
+import { Drawer, Grid, IconButton } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import MainNavList from "./MainNavList";
 import About from "../About";
 
 const MainNavMobile = () => {
+  // State management and function that controls the open/close of the
+  // mobile menu drawer
   const [navState, setNavState] = useState(false);
 
-  function toggleNav(e) {
+  function toggleNav() {
     setNavState(!navState);
   }
 
@@ -18,7 +20,6 @@ const MainNavMobile = () => {
         onClick={toggleNav}
         edge="end"
         color="primary"
-        disableRipple={true}
         aria-label="menu"
       >
         <MenuRounded sx={{ fontSize: 50 }} />
@@ -31,29 +32,19 @@ const MainNavMobile = () => {
           sx: { backgroundColor: "primary.main", maxWidth: "70%" },
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <Grid container justifyContent="flex-end">
           <IconButton
             onClick={toggleNav}
             color="secondary"
-            disableRipple={true}
             aria-label="close menu"
           >
             <CloseRounded sx={{ fontSize: 50 }} />
           </IconButton>
-        </Box>
+        </Grid>
         <Box component="nav" role="navigation" onClick={toggleNav}>
           <MainNavList />
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            height: "100%",
-          }}
-        >
-          <About />
-        </Box>
+        <About />
       </Drawer>
     </>
   );

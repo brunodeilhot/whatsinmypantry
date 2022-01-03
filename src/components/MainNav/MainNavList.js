@@ -2,7 +2,6 @@ import {
   InfoRounded,
   KitchenRounded,
   MenuBookRounded,
-  RestaurantRounded,
   StarRateRounded,
 } from "@mui/icons-material";
 import {
@@ -44,11 +43,6 @@ const MainNavList = ({ desktop, desktopLg }) => {
       mobile: false,
       desktop: true,
     },
-    // {
-    //   name: "My Meal Plan",
-    //   icon: <RestaurantRounded color="secondary" />,
-    //   link: "/",
-    // },
   ];
 
   const filteredNavList = navList.filter((item) =>

@@ -19,13 +19,14 @@ const ScrollTop = ({ mobileList }) => {
     }
   };
 
-  const ScrollTopFab = styled(Fab)(({theme}) => ({
+  // Customized scroll to top button
+  const ScrollTopFab = styled(Fab)(({ theme }) => ({
     "&.MuiFab-root": {
       "&:hover": {
-        backgroundColor: theme.palette.primary.main
-      }
-    }
-  }))
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+  }));
 
   return (
     <Zoom in={trigger}>

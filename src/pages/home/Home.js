@@ -13,13 +13,13 @@ const Home = ({ desktop }) => {
         position={desktop ? "static" : "fixed"}
         direction="column"
         zIndex="speedDial"
-        backgroundColor="background.paper"
         pb={2}
+        backgroundColor="background.default"
       >
         <Intro />
         <SearchIngredients />
       </Grid>
-      {!desktop && <Box sx={{ minHeight: "320px" }}></Box>}
+      {!desktop && <Box minHeight={355}></Box>}
       <MyPantry />
     </Grid>
   );

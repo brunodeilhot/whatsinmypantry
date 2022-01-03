@@ -9,13 +9,13 @@ import {
 import FilterGroups from "./FilterGroups";
 
 const Filters = ({ handleFilterChange, mealType, diet }) => {
-
+  // const that determines wether there are active filters
   const noFilters = mealType === undefined && diet === undefined ? true : false;
 
   const filterBy = [
     {
       name: "meal type",
-      value: mealType,
+      activeFilter: mealType,
       filters: [
         "main course",
         "breakfast",
@@ -28,7 +28,7 @@ const Filters = ({ handleFilterChange, mealType, diet }) => {
     },
     {
       name: "dietary options",
-      value: diet,
+      activeFilter: diet,
       filters: [
         "gluten free",
         "ketogenic",
@@ -40,6 +40,7 @@ const Filters = ({ handleFilterChange, mealType, diet }) => {
     },
   ];
 
+  // Customized Filters accordion Open/Close icon
   const AccordionIcon = styled(AccordionSummary)(({ theme }) => {
     const filterColors = noFilters
       ? theme.palette.text.secondary
@@ -73,8 +74,6 @@ const Filters = ({ handleFilterChange, mealType, diet }) => {
         expandIcon={
           noFilters ? <FilterListOffRounded /> : <FilterListRounded />
         }
-        aria-controls="panel1a-content"
-        id="panel1a-header"
       >
         {noFilters ? (
           <Typography sx={{ color: "text.secondary" }}>
@@ -85,7 +84,10 @@ const Filters = ({ handleFilterChange, mealType, diet }) => {
         )}
       </AccordionIcon>
       <AccordionDetails>
-        <FilterGroups filterBy={filterBy} handleFilterChange={handleFilterChange} />
+        <FilterGroups
+          filterBy={filterBy}
+          handleFilterChange={handleFilterChange}
+        />
       </AccordionDetails>
     </Accordion>
   );

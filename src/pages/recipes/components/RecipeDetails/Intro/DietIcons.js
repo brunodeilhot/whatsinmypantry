@@ -1,14 +1,14 @@
 import { Avatar, Grid, Tooltip } from "@mui/material";
 
 const DietIcons = ({ glutenFree, dairyFree, vegetarian, vegan }) => {
-  const items = [
+  const icons = [
     { name: "GF", alt: "Gluten Free", prop: glutenFree },
     { name: "DF", alt: "Dairy Free", prop: dairyFree },
     { name: "V", alt: "Vegetarian", prop: vegetarian },
     { name: "VE", alt: "Vegan", prop: vegan },
   ];
 
-  const avatarStyle = {
+  const iconStyle = {
     border: "2px solid",
     borderColor: "text.secondary",
     backgroundColor: "transparent",
@@ -21,19 +21,19 @@ const DietIcons = ({ glutenFree, dairyFree, vegetarian, vegan }) => {
 
   return (
     <Grid container item spacing={0.5}>
-      {items.map((item) => (
-        <Grid item key={item.name}>
+      {icons.map((item) => (
+        <Grid key={item.name} item>
           <Tooltip title={item.alt} enterDelay={300} leaveDelay={200}>
             <Avatar
               alt={item.alt}
               sx={
                 item.prop
                   ? {
-                      ...avatarStyle,
+                      ...iconStyle,
                       borderColor: "primary.main",
                       color: "primary.main",
                     }
-                  : avatarStyle
+                  : iconStyle
               }
             >
               {item.name}

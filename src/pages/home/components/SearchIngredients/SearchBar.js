@@ -1,37 +1,35 @@
 import { SearchRounded } from "@mui/icons-material";
-import { InputAdornment, TextField } from "@mui/material";
-import { Box, styled } from "@mui/system";
+import { Grid, InputAdornment, TextField } from "@mui/material";
+import { styled } from "@mui/system";
 
 const SearchBar = ({ handleChange, value, searchBarRef }) => {
-  const SearchIgredientsInput = styled(TextField)({
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#7FD7C3",
-        borderWidth: "2px",
-        borderRadius: "30px",
+  // Customized input field
+  const SearchIgredientsInput = styled(TextField)(({ theme }) => {
+    const themeColor = theme.palette.primary.main;
+    return {
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          borderColor: themeColor,
+          borderWidth: "2px",
+          borderRadius: "30px",
+        },
+        "&:hover fieldset": {
+          borderColor: themeColor,
+        },
+        "&.Mui-focused fieldset": {
+          borderWidth: "3px",
+        },
       },
-      "&:hover fieldset": {
-        borderColor: "#7FD7C3",
-      },
-      "&.Mui-focused fieldset": {
-        borderWidth: "3px",
-      },
-    },
+    };
   });
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
+    <Grid container justifyContent="center">
       <SearchIgredientsInput
         ref={searchBarRef}
         autoFocus
         value={value}
         onChange={handleChange}
-        id="ingredient-search"
         placeholder="e.g. tomato"
         InputProps={{
           startAdornment: (
@@ -46,7 +44,7 @@ const SearchBar = ({ handleChange, value, searchBarRef }) => {
           backgroundColor: "secondary.main",
         }}
       />
-    </Box>
+    </Grid>
   );
 };
 

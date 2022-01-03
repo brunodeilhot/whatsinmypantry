@@ -5,15 +5,11 @@ import Servings from "./Servings";
 import UnitOptions from "./UnitOptions";
 
 const Ingredients = ({ extendedIngredients, servings }) => {
-  const [unit, setUnit] = useState("us");
+  // State management and functions that control the increase or decrease
+  // of the number of servings
   const [serving, setServing] = useState(servings);
 
-  const handleUnit = (e, value) => {
-    if (value !== null) {
-      setUnit(value);
-    }
-  };
-
+  // Function for value input
   const handleServing = (e) => {
     const value = e.target.value;
     const reg = /^[0-9\b]+$/;
@@ -23,13 +19,23 @@ const Ingredients = ({ extendedIngredients, servings }) => {
     }
   };
 
+  // Functions for increase/decrease buttons
   const addServing = () => setServing(serving + 1);
 
   const removeServing = () => {
     if (serving > 1) {
       setServing(serving - 1);
     }
-  }
+  };
+
+  // State management and function that handles the unit measure options
+  const [unit, setUnit] = useState("us");
+
+  const handleUnit = (e, value) => {
+    if (value !== null) {
+      setUnit(value);
+    }
+  };
 
   return (
     <Grid container item direction="column" pt={5}>
