@@ -1,7 +1,7 @@
 import { KeyboardArrowUpRounded } from "@mui/icons-material";
 import { Fab, styled, useScrollTrigger, Zoom } from "@mui/material";
 
-const ScrollTop = ({ mobileList }) => {
+const ScrollTop = ({ desktop }) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
   });
@@ -35,7 +35,7 @@ const ScrollTop = ({ mobileList }) => {
         color="primary"
         aria-label="scroll back to top"
         sx={
-          mobileList
+          !desktop
             ? { position: "fixed", bottom: 70, right: 16 }
             : { position: "fixed", bottom: 16, right: 16 }
         }

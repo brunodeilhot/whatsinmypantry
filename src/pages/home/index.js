@@ -1,10 +1,12 @@
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
+import { useSelector } from "react-redux";
 import Intro from "./components/Intro";
 import MyPantry from "./components/MyPantry";
 import SearchIngredients from "./components/SearchIngredients";
 
-const Home = ({ desktop }) => {
+const Home = () => {
+  const { desktop } = useSelector((state) => state.mediaqueries);
   return (
     <Grid container direction="column">
       <Grid

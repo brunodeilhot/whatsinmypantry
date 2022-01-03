@@ -1,7 +1,7 @@
 import { Dialog, Grid, Slide } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useMatch } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getRecipeDetails } from "../../../../services";
 import Header from "./Header";
 import Intro from "./Intro";
@@ -11,9 +11,10 @@ import Footer from "./Footer";
 import Loading from "../../../../components/Loading";
 import ErrorPage from "../../../../components/ErrorPage";
 
-const RecipeDetails = ({ desktop }) => {
+const RecipeDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { desktop } = useSelector((state) => state.mediaqueries);
 
   // Manages the state of the recipe details page (open/close)
   const [open, setOpen] = useState(true);

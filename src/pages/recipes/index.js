@@ -7,8 +7,9 @@ import NoRecipes from "./components/NoRecipes";
 import RecipeList from "./components/RecipeList";
 import Filters from "./components/Filters";
 
-const Recipes = ({ desktop }) => {
+const Recipes = () => {
   const dispatch = useDispatch();
+  const { desktop } = useSelector((state) => state.mediaqueries);
   const pantryState = useSelector((state) => state.myPantry);
 
   // Management of filter options in the recipe list
@@ -82,7 +83,7 @@ const Recipes = ({ desktop }) => {
         next={addRecipesScroll}
         hasMore={!recipeLimit}
       >
-        <RecipeList recipes={recipes} mobileList={!desktop} />
+        <RecipeList recipes={recipes} desktop={desktop} />
       </InfiniteScroll>
     );
 

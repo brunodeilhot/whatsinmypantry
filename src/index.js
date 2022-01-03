@@ -9,13 +9,13 @@ import Loading from "./components/Loading";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <PersistGate loading={<Loading />} persistor={persistor}>
+    <Provider store={store}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
+        <BrowserRouter>
           <MainRoutes />
-        </PersistGate>
-      </Provider>
-    </BrowserRouter>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

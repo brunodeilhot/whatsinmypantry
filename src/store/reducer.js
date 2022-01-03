@@ -27,6 +27,11 @@ export default function reducer(state, action) {
         ...state,
         apiLimitReached: action.payload,
       };
+    case "MEDIAQUERY":
+      return {
+        ...state,
+        mediaqueries: action.payload,
+      }
     default:
       return state;
   }

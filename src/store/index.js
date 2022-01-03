@@ -6,7 +6,7 @@ import reducer from "./reducer";
 const persistConfig = {
   key: "whatsinmypantry",
   storage,
-  blacklist: ["apiLimitReached"],
+  blacklist: ["apiLimitReached", "mediaqueries"],
 };
 
 // myPantry - stores a list of ingredients added by the user
@@ -17,6 +17,7 @@ const initialState = {
   myPantry: [],
   starredRecipes: [],
   apiLimitReached: false,
+  mediaqueries: {}
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

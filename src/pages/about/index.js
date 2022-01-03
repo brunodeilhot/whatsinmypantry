@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import { CopyrightRounded, GitHub, LinkedIn } from "@mui/icons-material";
 import { Grid, IconButton, Link, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import Logo from "../assets/Logo.svg";
+import Logo from "../../assets/Logo.svg";
 
-const About = ({ desktop }) => {
+const About = () => {
+  const { desktop } = useSelector((state) => state.mediaqueries);
+
   // Font and Icon colors change based on return value of the mediaquery
   const fontColor = desktop ? "text.primary" : "secondary.main";
   const iconColor = desktop ? "primary" : "secondary";

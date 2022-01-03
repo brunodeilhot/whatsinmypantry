@@ -8,10 +8,11 @@ import responsiveTheme from "./Theme";
 import ActionButtons from "./components/ActionButtons";
 import Header from "./components/Header";
 import ErrorPage from "./components/ErrorPage";
-import Home from "./pages/home/Home";
+import Home from "./pages/home";
 
-const App = ({ desktop, desktopLg }) => {
+const App = () => {
   const navigate = useNavigate();
+  const { desktop, desktopLg } = useSelector((state) => state.mediaqueries);
   const apiLimit = useSelector((state) => state.apiLimitReached);
 
   // Home page (ingredient search) is only present as a standalone
@@ -64,7 +65,7 @@ const App = ({ desktop, desktopLg }) => {
           <PermanentDrawer variant="permanent">
             <Toolbar />
             <Box overflow="auto">
-              <Home desktop={desktop} />
+              <Home />
             </Box>
           </PermanentDrawer>
         )}

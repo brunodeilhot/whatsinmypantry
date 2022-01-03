@@ -3,7 +3,7 @@ import { Drawer, Grid, IconButton } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import MainNavList from "./MainNavList";
-import About from "../About";
+import About from "../../pages/about";
 
 const MainNavMobile = () => {
   // State management and function that controls the open/close of the

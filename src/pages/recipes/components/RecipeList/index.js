@@ -4,7 +4,7 @@ import RecipeCard from "./RecipeCard";
 import Loading from "../../../../components/Loading";
 import ScrollTop from "../../../../components/ScrollTop";
 
-const RecipeList = ({ recipes, mobileList }) => {
+const RecipeList = ({ recipes, desktop }) => {
   const dispatch = useDispatch();
   const starredRecipes = useSelector((state) => state.starredRecipes);
 
@@ -46,7 +46,7 @@ const RecipeList = ({ recipes, mobileList }) => {
           p={2}
         >
           {recipeList}
-          <ScrollTop mobileList={mobileList} />
+          <ScrollTop desktop={desktop} />
         </Grid>
       )}
     </>
