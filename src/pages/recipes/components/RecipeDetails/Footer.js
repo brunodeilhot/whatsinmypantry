@@ -12,7 +12,7 @@ const Footer = ({ sourceName, sourceUrl }) => (
     >
       COPYRIGHT <CopyrightRounded fontSize="small" sx={{ marginX: 0.5 }} />
       Recipe by
-      <Link href={sourceUrl} underline="none" sx={{ ml: 0.5 }}>
+      <Link href={sourceUrl} target="_blank" underline="none" sx={{ ml: 0.5 }}>
         {sourceName}
       </Link>
     </Typography>

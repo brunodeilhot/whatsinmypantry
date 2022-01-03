@@ -42,6 +42,7 @@ const About = ({ desktop }) => {
         powered by{" "}
         <Link
           href="https://spoonacular.com/food-api"
+          target="_blank"
           underline="none"
           color={iconColor}
         >
