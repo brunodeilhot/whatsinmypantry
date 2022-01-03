@@ -84,7 +84,6 @@ export function getRecipeDetails(value, success) {
 }
 
 function parseJsonResults(response) {
-  console.log(response.data.results);
   return response.data.results;
 }
 
@@ -94,7 +93,6 @@ function parseJsonData(response) {
   if (response === undefined) {
     return response;
   }
-  console.log(response.data);
   return response.data;
 }
 
