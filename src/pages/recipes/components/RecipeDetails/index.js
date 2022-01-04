@@ -29,13 +29,15 @@ const RecipeDetails = () => {
   // Closing the Recipe Details page will return to previous page
   // wether that page was starred or recipes, even if the user
   // came from outside the app
-  const matchRecipes = useMatch("recipes/*");
+  // "/whatsinmypantry/" is used only for github pages, in a regular
+  // page this would be only "/"
+  const matchRecipes = useMatch("/whatsinmypantry/recipes/*");
 
   const handleClose = () => {
     if (matchRecipes) {
-      return navigate("/recipes");
+      return navigate("/whatsinmypantry/recipes");
     }
-    navigate("/starred");
+    navigate("/whatsinmypantry/starred");
   };
 
   // Destructure of the id parameter used to get detailed recipe data from api
