@@ -19,7 +19,7 @@ const MainNavList = ({ desktop, desktopLg }) => {
     {
       name: "My Pantry",
       icon: <KitchenRounded color="secondary" />,
-      link: "/",
+      link: "/whatsinmypantry/", // Only for githubpage, this should be "/"
       mobile: true,
       desktop: false,
     },
