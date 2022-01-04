@@ -15,7 +15,7 @@ const ErrorPage = ({ apiLimit, desktop, drawerWidth }) => {
       if (desktop) {
         navigate("about");
       } else {
-        navigate("/whatsinmypantry/");
+        navigate("/whatsinmypantry/");  // Only for githubpage, this should be "/"
       }
       dispatch({ type: "API_LIMIT", payload: false });
     }, 5000);
