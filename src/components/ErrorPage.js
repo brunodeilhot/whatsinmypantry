@@ -15,7 +15,7 @@ const ErrorPage = ({ apiLimit, desktop, drawerWidth }) => {
       if (desktop) {
         navigate("about");
       } else {
-        navigate("/");
+        navigate("/whatsinmypantry/");
       }
       dispatch({ type: "API_LIMIT", payload: false });
     }, 5000);
