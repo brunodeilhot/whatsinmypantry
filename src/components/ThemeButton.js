@@ -4,10 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ThemeButton = () => {
   const dispatch = useDispatch();
+
+  // If the user does not toggle a theme mode the app will read
+  // the user's default system or brower setting, once the user
+  // changes the theme the new setting will be saved on local storage
+  const preferedDarkMode = useSelector((state) => state.preferedDarkMode);
   const darkMode = useSelector((state) => state.darkMode);
 
   const toggleMode = () => {
-    dispatch({ type: "THEME_MODE", payload: !darkMode });
+    dispatch({
+      type: "THEME_MODE",
+      payload: darkMode === null ? !preferedDarkMode : !darkMode,
+    });
   };
 
   const iconOptions = {
@@ -22,7 +30,7 @@ const ThemeButton = () => {
 
   return (
     <Switch
-      checked={darkMode}
+      checked={darkMode === null ? preferedDarkMode : darkMode}
       onChange={toggleMode}
       aria-label="theme mode"
       color="secondary"

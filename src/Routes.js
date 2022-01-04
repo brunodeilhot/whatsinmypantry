@@ -12,9 +12,10 @@ import ErrorPage from "./components/ErrorPage";
 
 const MainRoutes = () => {
   const dispatch = useDispatch();
+
+  // Media query management of the app
   const desktop = useMediaQuery("(min-width:700px)");
   const desktopLg = useMediaQuery("(min-width:1200px)");
-  const preferedMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   useEffect(() => {
     dispatch({
@@ -23,8 +24,12 @@ const MainRoutes = () => {
     });
   }, [desktop, desktopLg, dispatch]);
 
+  // Checks the user default mode on system or browser settings
+  // Saves that setting in the store
+  const preferedMode = useMediaQuery("(prefers-color-scheme: dark)");
+
   useEffect(() => {
-    dispatch({ type: "THEME_MODE", payload: preferedMode });
+    dispatch({ type: "PREFERED_THEME_MODE", payload: preferedMode });
   }, [dispatch, preferedMode]);
 
   const recipeDetails = <Route path=":id" element={<RecipeDetails />} />;

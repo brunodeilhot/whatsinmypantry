@@ -22,6 +22,18 @@ const baseTheme = createTheme({
         },
       },
     },
+    MuiSwitch: {
+      styleOverrides: {
+        switchBase: {
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
+          "&.Mui-checked:hover": {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
   },
 });
 
@@ -92,7 +104,7 @@ export const responsiveDarkTheme = responsiveFontSizes(darkTheme);
 
 const themes = {
   responsiveLightTheme,
-  responsiveDarkTheme
-}
+  responsiveDarkTheme,
+};
 
 export default themes;
