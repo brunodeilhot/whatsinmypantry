@@ -19,7 +19,9 @@ const App = () => {
   // Home page (ingredient search) is only present as a standalone
   // in the mobile version, for desktop the user is redirected to
   // the recipes page
-  const matchRoute = useMatch("/");
+  // "/whatsinmypantry/" is used only for github pages, in a regular
+  // page this would be only "/"
+  const matchRoute = useMatch("/whatsinmypantry/");
 
   useEffect(() => {
     if (desktop && matchRoute) {
