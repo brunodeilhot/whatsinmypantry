@@ -12,6 +12,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import ThemeButton from "../ThemeButton";
 
 const MainNavList = ({ desktop, desktopLg }) => {
   const navList = [
@@ -53,7 +54,6 @@ const MainNavList = ({ desktop, desktopLg }) => {
     <List dense={desktop && !desktopLg} sx={desktop && { display: "flex" }}>
       {filteredNavList.map((item) => (
         <ListItem
-          component="li"
           divider={!desktop}
           disablePadding
           key={item.name}
@@ -62,10 +62,10 @@ const MainNavList = ({ desktop, desktopLg }) => {
           <ListItemButton
             component={Link}
             to={item.link}
-            sx={{ width: "100%" }}
+            sx={{ width: "100%", paddingX: desktop && !desktopLg ? 1 : 2 }}
           >
             {item.icon === null ? null : (
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
             )}
             <ListItemText
               primary={item.name}
@@ -74,6 +74,11 @@ const MainNavList = ({ desktop, desktopLg }) => {
           </ListItemButton>
         </ListItem>
       ))}
+      {desktop && (
+        <ListItem disablePadding sx={{ width: "fit-content", marginLeft: desktopLg ? 5 : 2.5 }}>
+          <ThemeButton />
+        </ListItem>
+      )}
     </List>
   );
 };

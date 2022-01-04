@@ -5,7 +5,7 @@ import MainNavMobile from "./MainNav/MainNavMobile";
 const Header = ({ desktop, desktopLg }) => (
   <>
     <AppBar
-      color={desktop ? "primary" : "inherit"}
+      sx={{ backgroundColor: desktop ? "primary.main" : "background.default" }}
       elevation={!desktop ? 0 : 4}
     >
       <Toolbar>

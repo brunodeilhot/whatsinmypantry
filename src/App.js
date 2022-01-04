@@ -1,10 +1,10 @@
-import { CssBaseline, Drawer, ThemeProvider, Toolbar } from "@mui/material";
-import { Box, styled } from "@mui/system";
-import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate, useMatch } from "react-router";
 import { useParentWidth } from "./Utils";
-import responsiveTheme from "./Theme";
+import { CssBaseline, Drawer, ThemeProvider, Toolbar } from "@mui/material";
+import { Box, styled } from "@mui/system";
+import { useEffect, useRef } from "react";
+import { responsiveDarkTheme, responsiveLightTheme } from "./Theme";
 import ActionButtons from "./components/ActionButtons";
 import Header from "./components/Header";
 import ErrorPage from "./components/ErrorPage";
@@ -12,8 +12,9 @@ import Home from "./pages/home";
 
 const App = () => {
   const navigate = useNavigate();
-  const { desktop, desktopLg } = useSelector((state) => state.mediaqueries);
   const apiLimit = useSelector((state) => state.apiLimitReached);
+  const { desktop, desktopLg } = useSelector((state) => state.mediaqueries);
+  const darkMode = useSelector((state) => state.darkMode);
 
   // Home page (ingredient search) is only present as a standalone
   // in the mobile version, for desktop the user is redirected to
@@ -36,7 +37,7 @@ const App = () => {
     ? (bodyWidth * 0.3).toString() + "px"
     : (bodyWidth * 0.4).toString() + "px";
 
-  const PermanentDrawer = styled(Drawer)({
+  const PermanentDrawer = styled(Drawer)(({ theme }) => ({
     "& .MuiDrawer-docked": {
       width: drawerWidth,
       flexShrink: 0,
@@ -45,8 +46,10 @@ const App = () => {
       width: drawerWidth,
       boxSizing: "border-box",
       zIndex: 1050,
+      backgroundColor: theme.palette.background.default,
+      borderRight: "none"
     },
-  });
+  }));
 
   const outlet = desktop ? (
     <Box ml={drawerWidth}>
@@ -57,7 +60,9 @@ const App = () => {
   );
 
   return (
-    <ThemeProvider theme={responsiveTheme}>
+    <ThemeProvider
+      theme={darkMode ? responsiveDarkTheme : responsiveLightTheme}
+    >
       <CssBaseline />
       <Box ref={bodyRef} minHeight="100vh" backgroundColor="background.default">
         <Header desktop={desktop} desktopLg={desktopLg} />
@@ -69,7 +74,15 @@ const App = () => {
             </Box>
           </PermanentDrawer>
         )}
-        {apiLimit ? <ErrorPage apiLimit={apiLimit} /> : outlet}
+        {apiLimit ? (
+          <ErrorPage
+            apiLimit={apiLimit}
+            desktop={desktop}
+            drawerWidth={drawerWidth}
+          />
+        ) : (
+          outlet
+        )}
         {!desktop && <ActionButtons />}
       </Box>
     </ThemeProvider>

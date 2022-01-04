@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import MainNavList from "./MainNavList";
 import About from "../../pages/about";
+import ThemeButton from "../ThemeButton";
 
 const MainNavMobile = () => {
   // State management and function that controls the open/close of the
@@ -32,7 +33,10 @@ const MainNavMobile = () => {
           sx: { backgroundColor: "primary.main", maxWidth: "70%" },
         }}
       >
-        <Grid container justifyContent="flex-end">
+        <Grid container justifyContent="space-between" alignItems="center">
+          <Grid item ml={1}>
+            <ThemeButton />
+          </Grid>
           <IconButton
             onClick={toggleNav}
             color="secondary"

@@ -40,6 +40,12 @@ const Filters = ({ handleFilterChange, mealType, diet }) => {
     },
   ];
 
+  const FiltersAccordion = styled(Accordion)(({ theme }) => ({
+    "&:before": {
+      opacity: 0
+    }
+  }))
+
   // Customized Filters accordion Open/Close icon
   const AccordionIcon = styled(AccordionSummary)(({ theme }) => {
     const filterColors = noFilters
@@ -69,7 +75,11 @@ const Filters = ({ handleFilterChange, mealType, diet }) => {
   });
 
   return (
-    <Accordion square disableGutters sx={{ boxShadow: "none" }}>
+    <FiltersAccordion
+      square
+      disableGutters
+      sx={{ boxShadow: "none", backgroundColor: "background.default" }}
+    >
       <AccordionIcon
         expandIcon={
           noFilters ? <FilterListOffRounded /> : <FilterListRounded />
@@ -89,7 +99,7 @@ const Filters = ({ handleFilterChange, mealType, diet }) => {
           handleFilterChange={handleFilterChange}
         />
       </AccordionDetails>
-    </Accordion>
+    </FiltersAccordion>
   );
 };
 

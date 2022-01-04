@@ -34,11 +34,7 @@ const ScrollTop = ({ desktop }) => {
         onClick={handleClick}
         color="primary"
         aria-label="scroll back to top"
-        sx={
-          !desktop
-            ? { position: "fixed", bottom: 70, right: 16 }
-            : { position: "fixed", bottom: 16, right: 16 }
-        }
+        sx={{ position: "fixed", bottom: desktop ? 16 : 70, right: 16 }}
       >
         <KeyboardArrowUpRounded color="secondary" sx={{ fontSize: 40 }} />
       </ScrollTopFab>

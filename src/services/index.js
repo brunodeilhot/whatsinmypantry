@@ -25,6 +25,7 @@ export function searchIngredients(value, success) {
         number: 5,
       },
     })
+    .catch((error) => apiLimit(error))
     .then(parseJsonResults)
     .then(success);
 }
@@ -84,13 +85,16 @@ export function getRecipeDetails(value, success) {
 }
 
 function parseJsonResults(response) {
+  if (response === 402) {
+    return response;
+  }
   return response.data.results;
 }
 
 // If an none existant id is received as user value then response is still
 // returned as undefined and an error page is displayed
 function parseJsonData(response) {
-  if (response === undefined) {
+  if (response === undefined || response === 402) {
     return response;
   }
   return response.data;
@@ -98,9 +102,7 @@ function parseJsonData(response) {
 
 // 402 error is used by the API to inform that api call limit has been reached
 function apiLimit(error) {
-  if (error.response.status === 402) {
-    return 402;
-  }
+  return error.response.status;
 }
 
 const methods = {

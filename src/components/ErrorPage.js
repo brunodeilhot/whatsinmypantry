@@ -5,21 +5,31 @@ import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import SadLogo from "../assets/SadLogo.svg";
 
-const ErrorPage = ({ apiLimit }) => {
+const ErrorPage = ({ apiLimit, desktop, drawerWidth }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // error page displays for 5 seconds then redirects back to the home page
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/");
+      if (desktop) {
+        navigate("about");
+      } else {
+        navigate("/");
+      }
       dispatch({ type: "API_LIMIT", payload: false });
     }, 5000);
     return () => clearTimeout(timer);
-  }, [dispatch, navigate]);
+  }, [desktop, dispatch, navigate]);
 
   return (
-    <Grid container justifyContent="center" alignContent="center">
+    <Grid
+      container
+      justifyContent="center"
+      alignContent="center"
+      width={desktop ? "fit-content" : "100%"}
+      ml={desktop ? drawerWidth : 0}
+    >
       <Grid container item flexDirection="column" alignItems="center" p={2.5}>
         <Box
           component="img"

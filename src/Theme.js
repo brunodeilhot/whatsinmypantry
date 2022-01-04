@@ -1,11 +1,31 @@
 import { createTheme, responsiveFontSizes } from "@mui/material";
 
-const theme = createTheme({
+const baseTheme = createTheme({
   typography: {
     button: {
       textTransform: "none",
     },
   },
+  components: {
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
+        disableTouchRipple: true,
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
+  },
+});
+
+const lightTheme = createTheme(baseTheme, {
   palette: {
     primary: {
       main: "#7FD7C3",
@@ -24,21 +44,6 @@ const theme = createTheme({
     divider: "rgba(255, 255, 255, 0.3)",
   },
   components: {
-    MuiButtonBase: {
-      defaultProps: {
-        disableRipple: true,
-        disableTouchRipple: true,
-      },
-    },
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          "&:hover": {
-            backgroundColor: "transparent",
-          },
-        },
-      },
-    },
     MuiFab: {
       styleOverrides: {
         root: {
@@ -51,6 +56,43 @@ const theme = createTheme({
   },
 });
 
-const responsiveTheme = responsiveFontSizes(theme);
+const darkTheme = createTheme(baseTheme, {
+  palette: {
+    primary: {
+      main: "#7FD7C3",
+    },
+    secondary: {
+      main: "#383A47",
+    },
+    text: {
+      primary: "#EFEFEF",
+      secondary: "#C4C4C4",
+    },
+    background: {
+      paper: "#4D4F61",
+      default: "#383A47",
+    },
+    divider: "rgba(0, 0, 0, 0.3)",
+  },
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "#383A47",
+          },
+        },
+      },
+    },
+  },
+});
 
-export default responsiveTheme;
+export const responsiveLightTheme = responsiveFontSizes(lightTheme);
+export const responsiveDarkTheme = responsiveFontSizes(darkTheme);
+
+const themes = {
+  responsiveLightTheme,
+  responsiveDarkTheme
+}
+
+export default themes;

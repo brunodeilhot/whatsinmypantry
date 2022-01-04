@@ -32,6 +32,11 @@ export default function reducer(state, action) {
         ...state,
         mediaqueries: action.payload,
       }
+    case "THEME_MODE":
+      return {
+        ...state,
+        darkMode: action.payload,
+      }
     default:
       return state;
   }

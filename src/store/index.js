@@ -17,7 +17,8 @@ const initialState = {
   myPantry: [],
   starredRecipes: [],
   apiLimitReached: false,
-  mediaqueries: {}
+  mediaqueries: {},
+  darkMode: false
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

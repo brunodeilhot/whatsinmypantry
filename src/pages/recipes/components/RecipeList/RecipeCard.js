@@ -37,7 +37,7 @@ const RecipeCard = ({
         flexDirection: "column",
         minHeight: "100%",
         borderRadius: "22px",
-        backgroundColor: "secondary.main",
+        backgroundColor: "background.paper",
         boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.03)",
       }}
     >

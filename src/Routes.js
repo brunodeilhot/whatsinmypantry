@@ -14,6 +14,7 @@ const MainRoutes = () => {
   const dispatch = useDispatch();
   const desktop = useMediaQuery("(min-width:700px)");
   const desktopLg = useMediaQuery("(min-width:1200px)");
+  const preferedMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   useEffect(() => {
     dispatch({
@@ -22,9 +23,11 @@ const MainRoutes = () => {
     });
   }, [desktop, desktopLg, dispatch]);
 
-  const recipeDetails = (
-    <Route path=":id" element={<RecipeDetails />} />
-  );
+  useEffect(() => {
+    dispatch({ type: "THEME_MODE", payload: preferedMode });
+  }, [dispatch, preferedMode]);
+
+  const recipeDetails = <Route path=":id" element={<RecipeDetails />} />;
 
   return (
     <Routes>
@@ -36,9 +39,7 @@ const MainRoutes = () => {
         <Route path="starred" element={<Starred />}>
           {recipeDetails}
         </Route>
-        {desktop && (
-          <Route path="about" element={<About />} />
-        )}
+        {desktop && <Route path="about" element={<About />} />}
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>

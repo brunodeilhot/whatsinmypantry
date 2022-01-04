@@ -62,7 +62,7 @@ const FilterGroups = ({ filterBy, handleFilterChange }) => {
               component="h2"
               color="primary"
               pr={1}
-              bgcolor="background.paper"
+              bgcolor="background.default"
               position="absolute"
               top="-10px"
             >
