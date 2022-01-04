@@ -42,7 +42,7 @@ const ActionButtons = () => {
     setActive(path);
   }, [actionButtons, path]);
 
-  function handlePathChange(e, value) {
+  const handlePathChange = (e, value) => {
     setActive(value);
   }
 

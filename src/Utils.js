@@ -7,19 +7,12 @@ export function useParentWidth(ref) {
 
   useEffect(() => {
     const getWidth = () => {
-      const widthRef = ref.current;
-      if (widthRef === null) {
-        return;
-      }
-      setWidth(widthRef.clientWidth);
+      setWidth(ref === undefined ? 0 : ref.current.clientWidth);
     };
 
     getWidth();
     window.addEventListener("resize", getWidth);
 
-    return () => {
-      window.removeEventListener("resize", getWidth);
-    };
   }, [ref]);
 
   return parentWidth;

@@ -11,7 +11,7 @@ const MainNavMobile = () => {
   // mobile menu drawer
   const [navState, setNavState] = useState(false);
 
-  function toggleNav() {
+  const toggleNav = () => {
     setNavState(!navState);
   }
 

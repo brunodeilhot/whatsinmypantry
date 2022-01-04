@@ -13,6 +13,10 @@ const persistConfig = {
 // starredRecipes - stores a list of recipes saved by the users
 // apiLimitReached - indicates via the ErrorPage component that the number
 // of api calls has reached its limit (this is not saved on local storage)
+// mediaqueries - stores an object {desktop: boolean, desktopLg: boolean} based
+// on current width of the document
+// preferedDarkMode - stores the system or browser theme preference
+// darkMode - stores theme preference only after a theme is chosen in the app itself
 const initialState = {
   myPantry: [],
   starredRecipes: [],

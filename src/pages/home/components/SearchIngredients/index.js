@@ -42,14 +42,14 @@ const SearchIngredients = () => {
 
   // This function is called on the search results when the user adds or removes
   // an ingredient and then updates the global store myPantry
-  function ingredientToggle(e, ingredient) {
+  const ingredientToggle = (e, ingredient) => {
     if (pantry.indexOf(ingredient) !== -1) {
       return dispatch({ type: "REMOVE_INGREDIENT", payload: ingredient });
     }
     dispatch({ type: "ADD_INGREDIENT", payload: ingredient });
   }
 
-  function resetValue() {
+  const resetValue = () => {
     setValue("");
   }
 

@@ -6,10 +6,9 @@ import IngredientChip from "./IngredientChip";
 
 const MyPantry = () => {
   const dispatch = useDispatch();
-
   const ingredients = useSelector((state) => state.myPantry);
 
-  function removeIngredient(e, ingredient) {
+  const removeIngredient = (e, ingredient) => {
     const ingIndex = ingredients.indexOf(ingredient);
     dispatch({ type: "REMOVE_INGREDIENT", payload: ingIndex });
   }
