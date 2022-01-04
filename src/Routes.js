@@ -36,7 +36,7 @@ const MainRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<App />}>
+      <Route path="/whatsinmypantry/" element={<App />}>
         {!desktop && <Route index element={<Home />} />}
         <Route path="recipes" element={<Recipes />}>
           {recipeDetails}
