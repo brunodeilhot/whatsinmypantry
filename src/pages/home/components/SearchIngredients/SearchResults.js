@@ -13,7 +13,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { imageBaseURL } from "../../../../services";
-import { useParentWidth } from "../../../../Utils";
+import { useParentSize } from "../../../../Utils";
 
 const SearchResults = ({
   ingredients,
@@ -24,7 +24,8 @@ const SearchResults = ({
 }) => {
   // Calls custom hook to calculate the width of the referenced element,
   // which in this case is the search bar component
-  const searchBarWidth = useParentWidth(widthRef);
+  const searchBar = useParentSize(widthRef);
+  const searchBarWidth = searchBar === undefined ? 0 : searchBar.width;
 
   return (
     <Grid container justifyContent="center">

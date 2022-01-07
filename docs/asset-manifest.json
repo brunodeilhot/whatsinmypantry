@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/whatsinmypantry/static/js/main.1b48ce13.chunk.js",
-    "main.js.map": "/whatsinmypantry/static/js/main.1b48ce13.chunk.js.map",
+    "main.js": "/whatsinmypantry/static/js/main.e60147ac.chunk.js",
+    "main.js.map": "/whatsinmypantry/static/js/main.e60147ac.chunk.js.map",
     "runtime-main.js": "/whatsinmypantry/static/js/runtime-main.4dcd9547.js",
     "runtime-main.js.map": "/whatsinmypantry/static/js/runtime-main.4dcd9547.js.map",
-    "static/js/2.9a703db5.chunk.js": "/whatsinmypantry/static/js/2.9a703db5.chunk.js",
-    "static/js/2.9a703db5.chunk.js.map": "/whatsinmypantry/static/js/2.9a703db5.chunk.js.map",
+    "static/js/2.a657a181.chunk.js": "/whatsinmypantry/static/js/2.a657a181.chunk.js",
+    "static/js/2.a657a181.chunk.js.map": "/whatsinmypantry/static/js/2.a657a181.chunk.js.map",
     "index.html": "/whatsinmypantry/index.html",
-    "static/js/2.9a703db5.chunk.js.LICENSE.txt": "/whatsinmypantry/static/js/2.9a703db5.chunk.js.LICENSE.txt",
+    "static/js/2.a657a181.chunk.js.LICENSE.txt": "/whatsinmypantry/static/js/2.a657a181.chunk.js.LICENSE.txt",
     "static/media/Logo.4e019f4f.svg": "/whatsinmypantry/static/media/Logo.4e019f4f.svg",
     "static/media/SadLogo.42b7c2ef.svg": "/whatsinmypantry/static/media/SadLogo.42b7c2ef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.4dcd9547.js",
-    "static/js/2.9a703db5.chunk.js",
-    "static/js/main.1b48ce13.chunk.js"
+    "static/js/2.a657a181.chunk.js",
+    "static/js/main.e60147ac.chunk.js"
   ]
 }

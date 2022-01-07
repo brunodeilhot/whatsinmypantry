@@ -2,24 +2,29 @@ import { useEffect, useState } from "react";
 
 // Hook that returns the width of a given ref element
 
-export function useParentWidth(ref) {
-  const [parentWidth, setWidth] = useState();
+export function useParentSize(ref) {
+  const [parentSize, setWidth] = useState();
 
   useEffect(() => {
-    const getWidth = () => {
-      setWidth(ref === undefined ? 0 : ref.current.clientWidth);
+    const getSize = () => {
+      if (ref.current === null) {
+        return;
+      }
+      setWidth({
+        width: ref.current.clientWidth,
+        height: ref.current.clientHeight,
+      });
     };
-
-    getWidth();
-    window.addEventListener("resize", getWidth);
-
+    
+    getSize();
+    window.addEventListener("resize", getSize);
   }, [ref]);
 
-  return parentWidth;
+  return parentSize;
 }
 
 const hooks = {
-  useParentWidth,
+  useParentSize,
 };
 
 export default hooks;

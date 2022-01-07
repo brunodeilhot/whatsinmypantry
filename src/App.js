@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate, useMatch } from "react-router";
-import { useParentWidth } from "./Utils";
+import { useParentSize } from "./Utils";
 import { CssBaseline, Drawer, ThemeProvider, Toolbar } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { useEffect, useRef } from "react";
@@ -33,7 +33,8 @@ const App = () => {
   // left positioned drawer and its width is rendered dynamically
   // based on the referenced width of the body
   const bodyRef = useRef();
-  const bodyWidth = useParentWidth(bodyRef);
+  const body = useParentSize(bodyRef);
+  const bodyWidth = body === undefined ? 0 : body.width;
 
   const drawerWidth = desktopLg
     ? (bodyWidth * 0.3).toString() + "px"
