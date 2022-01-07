@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchIngredients } from "../../../../services";
 import { useDebounce } from "use-debounce/lib";
+import { Box } from "@mui/material";
 
 const SearchIngredients = () => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const SearchIngredients = () => {
   }
 
   return (
-    <>
+    <Box position="relative">
       <SearchBar
         searchBarRef={searchBarRef}
         value={value}
@@ -69,7 +70,7 @@ const SearchIngredients = () => {
           pantry={pantry}
         />
       ) : null}
-    </>
+    </Box>
   );
 };
 

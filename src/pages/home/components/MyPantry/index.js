@@ -1,15 +1,11 @@
 import { Fade, Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { TransitionGroup } from "react-transition-group";
-import { useParentSize } from "../../../../Utils";
 import EmptyPantry from "./EmptyPantry";
 import IngredientChip from "./IngredientChip";
 
-const MyPantry = ({ introRef, desktop }) => {
+const MyPantry = () => {
   const dispatch = useDispatch();
-  const introSize = useParentSize(introRef);
-  const introHeight =
-    introSize === undefined ? 0 : introSize.height.toString() + "px";
   const ingredients = useSelector((state) => state.myPantry);
 
   const removeIngredient = (e, ingredient) => {
@@ -29,16 +25,11 @@ const MyPantry = ({ introRef, desktop }) => {
   ));
 
   return (
-    <Grid
-      container
-      justifyContent="center"
-      position={desktop ? "static" : "absolute"}
-      top={introHeight}
-    >
+    <Grid container justifyContent="center">
       {ingredients.length === 0 ? (
         <EmptyPantry />
       ) : (
-        <Grid container item spacing={1} maxWidth="80%" mt={!desktop && 8} mb={8} >
+        <Grid container item spacing={1} maxWidth="80%" mt={3} mb={3}>
           <TransitionGroup component={null}>{ingredientList}</TransitionGroup>
         </Grid>
       )}

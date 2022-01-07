@@ -35,14 +35,14 @@ const SearchResults = ({
           sx={{
             display: "flex",
             flexDirection: "column",
-            position: "fixed !important",
+            position: "absolute",
             width: searchBarWidth,
             border: "3px solid",
             borderColor: "primary.main",
             borderRadius: "30px",
             backgroundColor: "secondary.main",
             mt: 1,
-            zIndex: "tooltip",
+            zIndex: "speedDial",
           }}
         >
           {ingredients.map((ingredient) => (
