@@ -15,12 +15,12 @@ const ActionButtons = () => {
     {
       name: "pantry",
       icon: <KitchenRounded sx={{ pr: 1, fontSize: 40 }} />,
-      link: "/whatsinmypantry/",  // Only for githubpage, this should be "/"
+      link: "/",
     },
     {
       name: "recipes",
       icon: <MenuBookRounded sx={{ pr: 1, fontSize: 40 }} />,
-      link: "/whatsinmypantry/recipes", // Only for githubpage, this should be "/recipes"
+      link: "/recipes",
     },
   ];
 

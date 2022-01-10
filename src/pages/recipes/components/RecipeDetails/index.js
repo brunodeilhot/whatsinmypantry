@@ -29,15 +29,13 @@ const RecipeDetails = () => {
   // Closing the Recipe Details page will return to previous page
   // wether that page was starred or recipes, even if the user
   // came from outside the app
-  // "/whatsinmypantry/" is used only for github pages, in a regular
-  // page this would be only "/"
-  const matchRecipes = useMatch("/whatsinmypantry/recipes/*");
+  const matchRecipes = useMatch("/recipes/*");
 
   const handleClose = () => {
     if (matchRecipes) {
-      return navigate("/whatsinmypantry/recipes");
+      return navigate("/recipes");
     }
-    navigate("/whatsinmypantry/starred");
+    navigate("/starred");
   };
 
   // Destructure of the id parameter used to get detailed recipe data from api
@@ -78,7 +76,6 @@ const RecipeDetails = () => {
       }
       setNoResults(false);
 
-      console.log(searchResults);
       setRecipeDetails(searchResults);
     });
   }, [dispatch, id]);

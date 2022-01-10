@@ -7,7 +7,7 @@ const MissingIngWarning = ({ missingIng }) => {
   }`;
 
   return (
-    <Tooltip title={toolTip} enterDelay={300} leaveDelay={200}>
+    <Tooltip title={toolTip} enterDelay={300} leaveDelay={200} enterTouchDelay={300} > 
       <IconButton sx={{ alignSelf: "flex-end" }}>
         <WarningAmberRounded color="warning" />
       </IconButton>

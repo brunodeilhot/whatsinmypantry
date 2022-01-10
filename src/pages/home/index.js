@@ -4,7 +4,7 @@ import MyPantry from "./components/MyPantry";
 import SearchIngredients from "./components/SearchIngredients";
 
 const Home = () => (
-  <Grid container direction="column">
+  <Grid container item direction="column" >
     <Intro />
     <SearchIngredients />
     <MyPantry />

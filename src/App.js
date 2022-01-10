@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate, useMatch } from "react-router";
 import { useParentSize } from "./Utils";
-import { CssBaseline, Drawer, ThemeProvider, Toolbar } from "@mui/material";
+import { CssBaseline, Drawer, Grid, ThemeProvider, Toolbar } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { useEffect, useRef } from "react";
 import { responsiveDarkTheme, responsiveLightTheme } from "./Theme";
@@ -19,9 +19,7 @@ const App = () => {
   // Home page (ingredient search) is only present as a standalone
   // in the mobile version, for desktop the user is redirected to
   // the recipes page
-  // "/whatsinmypantry/" is used only for github pages, in a regular
-  // page this would be only "/"
-  const matchRoute = useMatch("/whatsinmypantry/");
+  const matchRoute = useMatch("/");
 
   useEffect(() => {
     if (desktop && matchRoute) {
@@ -72,9 +70,9 @@ const App = () => {
         {desktop && (
           <PermanentDrawer variant="permanent">
             <Toolbar />
-            <Box overflow="auto">
+            <Grid container overflow="auto" height="100vh">
               <Home />
-            </Box>
+            </Grid>
           </PermanentDrawer>
         )}
         {apiLimit ? (

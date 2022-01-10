@@ -51,7 +51,7 @@ const RecipeCard = ({
           flexGrow: 1,
         }}
       >
-        <CardMedia component="img" image={image} height="100%" alt={title} />
+        <CardMedia component="img" image={image} alt={title} />
         <CardContent sx={{ p: 1, pb: 0 }}>
           <Typography component="h2" variant="body2" fontWeight={700}>
             {title}
