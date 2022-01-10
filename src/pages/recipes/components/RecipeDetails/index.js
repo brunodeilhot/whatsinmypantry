@@ -76,7 +76,6 @@ const RecipeDetails = () => {
       }
       setNoResults(false);
 
-      console.log(searchResults);
       setRecipeDetails(searchResults);
     });
   }, [dispatch, id]);
