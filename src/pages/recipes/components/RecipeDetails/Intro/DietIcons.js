@@ -23,7 +23,7 @@ const DietIcons = ({ glutenFree, dairyFree, vegetarian, vegan }) => {
     <Grid container item spacing={1}>
       {icons.map((item) => (
         <Grid key={item.name} item>
-          <Tooltip title={item.alt} enterDelay={300} leaveDelay={200} enterTouchDelay={300}>
+          <Tooltip title={item.alt} enterDelay={300} leaveDelay={200} enterTouchDelay={0}>
             <Avatar
               alt={item.alt}
               sx={
