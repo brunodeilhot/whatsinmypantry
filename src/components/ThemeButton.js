@@ -1,18 +1,9 @@
 import { DarkModeRounded, LightModeRounded } from "@mui/icons-material";
-import { Switch, useMediaQuery } from "@mui/material";
-import { useEffect } from "react";
+import { Switch } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 const ThemeButton = () => {
   const dispatch = useDispatch();
-
-  // Checks the user default mode on system or browser settings
-  // Saves that setting in the store
-  const preferedMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-  useEffect(() => {
-    dispatch({ type: "THEME_MODE", payload: preferedMode });
-  }, [dispatch, preferedMode]); 
 
   // Controls toggle of dark/light mode
   const darkMode = useSelector((state) => state.darkMode);

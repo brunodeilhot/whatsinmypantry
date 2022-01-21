@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Outlet, useNavigate, useMatch } from "react-router";
 import { useParentSize } from "./Utils";
-import { CssBaseline, Drawer, Grid, ThemeProvider, Toolbar } from "@mui/material";
+import { CssBaseline, Drawer, Grid, ThemeProvider, Toolbar, useMediaQuery } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { useEffect, useRef } from "react";
 import { responsiveDarkTheme, responsiveLightTheme } from "./Theme";
@@ -12,10 +12,19 @@ import Home from "./pages/home";
 
 const App = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const apiLimit = useSelector((state) => state.apiLimitReached);
   const { desktop, desktopLg } = useSelector((state) => state.mediaqueries);
   const darkMode = useSelector((state) => state.darkMode);
+
+  // Checks the user default mode on system or browser settings
+  // Saves that setting in the store
+  const preferedMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  useEffect(() => {
+    dispatch({ type: "THEME_MODE", payload: preferedMode });
+  }, [dispatch, preferedMode]); 
 
   // Home page (ingredient search) is only present as a standalone
   // in the mobile version, for desktop the user is redirected to
