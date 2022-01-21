@@ -1,11 +1,8 @@
 import axios from "axios";
+import apiKey from "./apiKey"
 
 const baseURL = "https://api.spoonacular.com";
 export const imageBaseURL = "https://spoonacular.com/cdn/ingredients_100x100/";
-
-const apiKey = {
-  apiKey: "e1f264b88e3a411d9f0b94cf29b7bf49",
-};
 
 const api = axios.create({
   baseURL,
