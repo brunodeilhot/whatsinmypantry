@@ -12,6 +12,7 @@ import Home from "./pages/home";
 
 const App = () => {
   const navigate = useNavigate();
+
   const apiLimit = useSelector((state) => state.apiLimitReached);
   const { desktop, desktopLg } = useSelector((state) => state.mediaqueries);
   const darkMode = useSelector((state) => state.darkMode);

@@ -31,17 +31,12 @@ export default function reducer(state, action) {
       return {
         ...state,
         mediaqueries: action.payload,
-      }
-    case "PREFERED_THEME_MODE":
-      return {
-        ...state,
-        preferedDarkMode: action.payload,
-      }
+      };
     case "THEME_MODE":
       return {
         ...state,
         darkMode: action.payload,
-      }
+      };
     default:
       return state;
   }

@@ -1,20 +1,26 @@
 import { DarkModeRounded, LightModeRounded } from "@mui/icons-material";
-import { Switch } from "@mui/material";
+import { Switch, useMediaQuery } from "@mui/material";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const ThemeButton = () => {
   const dispatch = useDispatch();
 
-  // If the user does not toggle a theme mode the app will read
-  // the user's default system or brower setting, once the user
-  // changes the theme the new setting will be saved on local storage
-  const preferedDarkMode = useSelector((state) => state.preferedDarkMode);
+  // Checks the user default mode on system or browser settings
+  // Saves that setting in the store
+  const preferedMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  useEffect(() => {
+    dispatch({ type: "THEME_MODE", payload: preferedMode });
+  }, [dispatch, preferedMode]); 
+
+  // Controls toggle of dark/light mode
   const darkMode = useSelector((state) => state.darkMode);
 
   const toggleMode = () => {
     dispatch({
       type: "THEME_MODE",
-      payload: darkMode === null ? !preferedDarkMode : !darkMode,
+      payload: !darkMode,
     });
   };
 
@@ -30,7 +36,7 @@ const ThemeButton = () => {
 
   return (
     <Switch
-      checked={darkMode === null ? preferedDarkMode : darkMode}
+      checked={darkMode}
       onChange={toggleMode}
       aria-label="theme mode"
       color="secondary"

@@ -8,7 +8,6 @@ import { Box } from "@mui/material";
 
 const SearchIngredients = () => {
   const dispatch = useDispatch();
-  const pantry = useSelector((state) => state.myPantry);
   const searchBarRef = useRef();
 
   // State and functions that manage the values received on the search input
@@ -43,9 +42,13 @@ const SearchIngredients = () => {
 
   // This function is called on the search results when the user adds or removes
   // an ingredient and then updates the global store myPantry
+  const pantry = useSelector((state) => state.myPantry);
+
   const ingredientToggle = (e, ingredient) => {
-    if (pantry.indexOf(ingredient) !== -1) {
-      return dispatch({ type: "REMOVE_INGREDIENT", payload: ingredient });
+    const ingredientIndex = pantry.indexOf(ingredient);
+
+    if (ingredientIndex !== -1) {
+      return dispatch({ type: "REMOVE_INGREDIENT", payload: ingredientIndex });
     }
     dispatch({ type: "ADD_INGREDIENT", payload: ingredient });
   }

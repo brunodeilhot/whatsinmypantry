@@ -24,14 +24,6 @@ const MainRoutes = () => {
     });
   }, [desktop, desktopLg, dispatch]);
 
-  // Checks the user default mode on system or browser settings
-  // Saves that setting in the store
-  const preferedMode = useMediaQuery("(prefers-color-scheme: dark)");
-
-  useEffect(() => {
-    dispatch({ type: "PREFERED_THEME_MODE", payload: preferedMode });
-  }, [dispatch, preferedMode]);
-
   const recipeDetails = <Route path=":id" element={<RecipeDetails />} />;
 
   return (
