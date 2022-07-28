@@ -3,7 +3,7 @@ This app was envisioned with a mobile first approach, as a final Front End acade
 
 The users begin their experience by searching for ingredients and adding them to a list (the pantry). Once ingredients are added, the Recipes page will list a number of recipes based on the ingredients in the user's pantry. Clicking on a Recipe card will open detailed information such as health score, ingredient list with options for number of servings and  step by step instructions.
 
-[Try the Live project here](https://brunodeilhot.github.io/whatsinmypantry/)
+[Try the Live project here](https://mypantry.brunodeilhot.dev)
 
 ## Libraries used in this project
 - <b>React redux</b>: Store management of data needed to be available globally;
