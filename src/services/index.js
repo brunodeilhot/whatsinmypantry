@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiKey from "./apiKey"
+import apiKey from "../../apiKey.js"
 
 const baseURL = "https://api.spoonacular.com";
 export const imageBaseURL = "https://spoonacular.com/cdn/ingredients_100x100/";

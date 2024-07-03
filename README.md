@@ -35,7 +35,7 @@ The users begin their experience by searching for ingredients and adding them to
         - <b>recipes</b>: This page displays a list of recipes based on the ingredients listed in the pantry;
             - <b>Filters</b>: Component which controls the filter options of the recipe list;
             - <b>RecipeDetails</b>: Page that displays all the information about a single recipe based on its id;
-            - <b>RecipeList</b>: List of recipes obtained as a result from the api with a scroll based loading for more recipes and allows users to star recipes; 
+            - <b>RecipeList</b>: List of recipes obtained as a result from the api with a scroll based loading for more recipes and allows users to star recipes;
             - <b>NoRecipes</b>: Component displayed when there are no recipes, either because no ingredients were added to the pantry or the filter options returned empty;
         - <b>starred</b>: Displays a list of recipes that were previously starred in the recipes page. Also uses the RecipeList component but passes a predetermined list of recipes as a prop;
 - <b>services</b>: Using Axios it controls all http requests to the api;
