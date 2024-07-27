@@ -1,0 +1,11 @@
+services:
+  mypantry:
+    build:
+      context: ./whatsinmypantry
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    container_name: mypantry
+    restart: unless-stopped
+    ports:
+      - 3001:3001
